@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Optimistic-Worms/thesis-project.git"
+    "url": "https://github.com/npHavens/saic_check_in_starter.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Optimistic-Worms/thesis-project/issues"
+    "url": "https://github.com/npHavens/saic_check_in_starter.git/issues"
   },
-  "homepage": "https://github.com/Optimistic-Worms/thesis-project#readme",
+  "homepage": "https://github.com/npHavens/saic_check_in_starter/#readme",
   "dependencies": {
     "axios": "^0.17.1",
     "bcrypt": "^1.0.3",
