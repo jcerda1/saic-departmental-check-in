@@ -11,7 +11,6 @@ const app = express();
 
 const path = require('path');
 const port = process.env.PORT || 3000;
-const isAuthenticated = require('./controllers/authroutes.js').isAuthenticated;
 
 let config;
 (port === 3000)? config = require('../webpack.dev.js') : config = require('../webpack.prod.js');
@@ -20,9 +19,6 @@ const compiler = webpack(config);
 
 
 app.use(express.static(__dirname));
-
-app.use(passport.initialize());
-app.use(expressValidator())
 
 const webpackDevMiddlewareInstance = webpackDevMiddleware( compiler, {
   publicPath: config.output.publicPath
