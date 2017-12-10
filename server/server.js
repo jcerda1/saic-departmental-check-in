@@ -26,7 +26,6 @@ app.use(webpackDevMiddlewareInstance);
 const server = app.listen(port || 3000);
 console.log('server is listening on port ' + port);
 
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(express.static(__dirname));

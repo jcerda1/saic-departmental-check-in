@@ -3,7 +3,8 @@ const axios = require('axios');
 exports.findById = (req, res) => {
   const url = `https://saic--HDBox.cs3.my.salesforce.com/services/data/v20.0/query?q=`;
   const targetFields = ['name', 'email'].join(',');
-  const query = `SELECT ${targetFields} from Contact WHERE EMPLIDPeoplesoftKey__c = '7000428'`;
+  const id = req.param('id');
+  const query = `SELECT ${targetFields} from Contact WHERE EMPLIDPeoplesoftKey__c = '${id}'`;
 
   axios.get(url + query, {
     headers: {
