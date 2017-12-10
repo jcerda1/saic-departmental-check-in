@@ -38,8 +38,9 @@ app.use(express.static(__dirname));
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   API Routes
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
-app.get('/test', (req, res) => {
-  getToken().then(token => res.send(token)).catch(err => res.send(err))
+app.get('/test', getToken, (req, res) => {
+  //getToken().then(token => res.send(token)).catch(err => res.send(err))
+  res.send(req.access_token);
 
 });
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
