@@ -8,6 +8,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      userObj: null
     };
     this.getContact = this.getContact.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -21,12 +22,13 @@ class App extends React.Component {
   }
 
   getContact(idNum) {
-    console.log(idNum)
+    console.log()
     axios.get('/contact', {
       params: {id: idNum}
     })
     .then(data => {
       console.log(data.data);
+      this.setState({userObj: data.data});
     })
     .catch(err => {
       console.log(err);
@@ -35,14 +37,21 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-      <form>
-        <input
-          name="idNum"
-          type="text"
-          onChange={this.handleInput}
-        />
-      </form>
+      this.state.userObj ?
+        <div>Account View</div>
+      :
+      <div className="main">
+        <div className="flex-container title">Please Scan your ID</div>
+        <div className="flex-container fa fa-id-card"></div>
+        <div className="flex-container text-input">
+          <form >
+            <input
+              name="idNum"
+              type="text"
+              onChange={this.handleInput}
+            />
+        </form>
+        </div>
       </div>
     )
   }
