@@ -4,19 +4,19 @@ if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
 
 const express = require('express')
 const bodyParser = require('body-parser');
+const path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const app = express();
 
+//controllers
+const {getToken} = require('./controllers/salesforce/auth.js');
 
-const path = require('path');
 const port = process.env.PORT || 3000;
 
 let config;
 (port === 3000)? config = require('../webpack.dev.js') : config = require('../webpack.prod.js');
 const compiler = webpack(config);
-
-
 
 app.use(express.static(__dirname));
 
@@ -38,7 +38,10 @@ app.use(express.static(__dirname));
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   API Routes
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
+app.get('/test', (req, res) => {
+  getToken().then(token => res.send(token)).catch(err => res.send(err))
 
+});
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   Fallback Routes
 * * * * * * * * * * * * * * * * * * * * * * * * * * */

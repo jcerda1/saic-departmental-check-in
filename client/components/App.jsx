@@ -12,10 +12,6 @@ class App extends React.Component {
     };
   }
 
-  getToken() {
-
-  }
-
   getUser() {
 
   }
