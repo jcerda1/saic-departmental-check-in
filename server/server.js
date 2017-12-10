@@ -9,9 +9,6 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const app = express();
 
-//controllers
-const {getToken} = require('./controllers/salesforce/auth.js');
-
 const port = process.env.PORT || 3000;
 
 let config;
@@ -34,15 +31,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(express.static(__dirname));
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * *
+  Salesforce Controllers
+* * * * * * * * * * * * * * * * * * * * * * * * * * */
+const auth = require('./controllers/salesforce/auth.js');
+const contact= require('./controllers/salesforce/contact.js');
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   API Routes
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
-app.get('/test', getToken, (req, res) => {
-  //getToken().then(token => res.send(token)).catch(err => res.send(err))
-  res.send(req.access_token);
-
-});
+app.get('/contact', auth.getToken, contact.findById);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   Fallback Routes
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -57,10 +55,6 @@ app.get('*.js', function (req, res, next) {
 app.get('*', (req,res) =>{
   res.sendFile(path.resolve(__dirname, '../index.html'))
 });
-
-
-
-
 
 module.exports.server = server;
 module.exports.app = app;

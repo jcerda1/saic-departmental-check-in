@@ -1,5 +1,4 @@
 const axios = require('axios');
-const Promise = require ('bluebird');
 const {CLIENT_ID, CLIENT_SECRET, USERNAME, PASSWORD, API_USER_TOKEN} = process.env;
 
 exports.getToken = (req, res, next) => {
@@ -13,7 +12,6 @@ exports.getToken = (req, res, next) => {
       }
     })
     .then((data) => {
-      console.log(data.data.access_token);
       req.access_token = data.data.access_token;
       next();
     })

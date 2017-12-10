@@ -8,16 +8,18 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      token: ''
     };
   }
 
-  getUser() {
+  getContact(idNum) {
 
   }
 
   render() {
-    return <div>Hello World</div>
+    return (
+      <div>
+      </div>
+    )
   }
 }
 
