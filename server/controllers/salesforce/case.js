@@ -2,11 +2,9 @@ const axios = require('axios');
 
 exports.findByContactId = (req, res) => {
   const url = `https://saic--HDBox.cs3.my.salesforce.com/services/data/v20.0/query?q=`;
-  const fields = [//add fields here
-                    'subject',
-                    'caseNumber',
-                    'CreatedDate'
-                  ].join(',');
+
+  //add fields here
+  const fields = ['Subject', 'CaseNumber', 'CreatedDate'].join(',');
 
   const id = req.param('id');
   const query = `SELECT ${fields} from Case WHERE ContactId = '${id}' ORDER BY CreatedDate DESC LIMIT 5`;
@@ -44,6 +42,23 @@ exports.createNew = (req, res) => {
   }
 
   axios.post(url, caseData, {
+    headers: {
+      Authorization: 'Bearer ' + req.access_token
+    }
+  })
+  .then(data => {
+    console.log(data)
+    res.send(data.data);
+  })
+  .catch(err => {
+    res.send(err);
+  })
+};
+
+exports.updateSubject = (req, res) => {
+  const url = `https://saic--HDBox.cs3.my.salesforce.com/services/data/v20.0/sobjects/Case`;
+
+  axios.patch(url, {Subject: req.body.subject}, {
     headers: {
       Authorization: 'Bearer ' + req.access_token
     }

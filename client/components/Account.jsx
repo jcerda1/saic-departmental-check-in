@@ -45,6 +45,18 @@ class App extends React.Component {
     .catch(err => console.log(err));
   }
 
+  updateCaseSubject(newSubject) {
+    axios.put('/cases', {
+      subject: newSubject
+    })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+
   render() {
     return (
       <div className="account">
