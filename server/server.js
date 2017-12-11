@@ -34,12 +34,15 @@ app.use(express.static(__dirname));
   Salesforce Controllers
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
 const auth = require('./controllers/salesforce/auth.js');
-const contact= require('./controllers/salesforce/contact.js');
+const contact = require('./controllers/salesforce/contact.js');
+const supportCase = require('./controllers/salesforce/case.js');
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   API Routes
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
 app.get('/contact', auth.getToken, contact.findById);
+
+app.get('/cases', auth.getToken, supportCase.findByContactId);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   Fallback Routes
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
