@@ -7,7 +7,7 @@ exports.findByContactId = (req, res) => {
                   ].join(',');
 
   const id = req.param('id');
-  const query = `SELECT ${fields} from Case WHERE ContactId = '${id}'`;
+  const query = `SELECT subject, ContactId from Case WHERE ContactId = '${id}'`;
 
   axios.get(url + query, {
     headers: {

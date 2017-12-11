@@ -30,7 +30,7 @@ class App extends React.Component {
   getCases() {
     axios.get('/cases', {
       params: {
-        id: this.props.user.EMPLIDPeoplesoftKey__c
+        id: this.props.user.Id
       }
     });
   }

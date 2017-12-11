@@ -5,7 +5,8 @@ exports.findById = (req, res) => {
   const fields = [//add fields here
                     'name',
                     'email',
-                    'EMPLIDPeoplesoftKey__c'
+                    'EMPLIDPeoplesoftKey__c',
+                    'ID'
                   ].join(',');
 
   const id = req.param('id');
