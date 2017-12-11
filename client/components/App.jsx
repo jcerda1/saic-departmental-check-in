@@ -23,7 +23,6 @@ class App extends React.Component {
   }
 
   getContact(idNum) {
-    console.log()
     axios.get('/contact', {
       params: {id: idNum}
     })

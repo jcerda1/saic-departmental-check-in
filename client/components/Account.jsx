@@ -14,7 +14,7 @@ class App extends React.Component {
     this.getCases = this.getCases.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getCases();
   }
 
@@ -32,7 +32,11 @@ class App extends React.Component {
       params: {
         id: this.props.user.Id
       }
-    });
+    })
+    .then(data => {
+      this.setState({cases: data.data.records})
+    })
+    .catch(err => console.log(err));
   }
 
   render() {
@@ -51,7 +55,7 @@ class App extends React.Component {
             </table>
         </div>
         <NewCase handleClick={this.createNewCase}/>
-        <CaseList getCases={this.props.getCases}/>
+        {this.state.cases ? <CaseList cases={this.state.cases}/> : <div></div>}
       </div>
     )
   }
