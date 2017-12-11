@@ -3,6 +3,7 @@ import axios from 'axios';
 import Promise from 'bluebird';
 import { BrowserRouter, Route, Link, browserHistory } from 'react-router-dom';
 import '../css/styles.css';
+import Account from './Account.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -27,8 +28,8 @@ class App extends React.Component {
       params: {id: idNum}
     })
     .then(data => {
-      console.log(data.data);
-      this.setState({userObj: data.data});
+      console.log(data.data.records[0]);
+      this.setState({userObj: data.data.records[0]});
     })
     .catch(err => {
       console.log(err);
@@ -38,10 +39,10 @@ class App extends React.Component {
   render() {
     return (
       this.state.userObj ?
-        <div>Account View</div>
+        <Account user={this.state.userObj}/>
       :
       <div className="main">
-        <div className="flex-container title">Please Scan your ID</div>
+        <div className="flex-container title">Please scan your ID</div>
         <div className="flex-container fa fa-id-card"></div>
         <div className="flex-container text-input">
           <form >
@@ -50,7 +51,7 @@ class App extends React.Component {
               type="text"
               onChange={this.handleInput}
             />
-        </form>
+          </form>
         </div>
       </div>
     )

@@ -41,10 +41,77 @@ input {
 }
 
 .title {
-  font-size: 30px;
+  font-weight: bold;
+  font-size: 36px;
   align-self: flex-end;
 }
 
 .text-input {
   align-self: flex-start;
+}
+
+.account {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 30% 20% 50%;
+  background-color: #fff;
+  color: #444;
+}
+
+.user-info {
+  align-self: center;
+}
+
+table {
+  width: 75%;
+}
+
+td {
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 0.5em;
+}
+
+.username {
+  margin-bottom: 30px;
+}
+
+.new-case {
+  align-self: flex-start;
+}
+
+.btn {
+  padding: 5px 10px !important;
+  border: 1px solid #404040;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.new-case div {
+  padding: 0px 10px 0px 10px;
+}
+
+.new-case form {
+  display: inline-block;
+}
+
+.flex-row {
+  padding: 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-title {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.case-subject {
+  width: 20em;
 }
