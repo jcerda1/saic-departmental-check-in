@@ -115,3 +115,7 @@ td {
 .case-subject {
   width: 20em;
 }
+
+.case-list {
+  align-self: flex-start;
+}

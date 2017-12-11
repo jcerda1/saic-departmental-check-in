@@ -27,7 +27,6 @@ class App extends React.Component {
       params: {id: idNum}
     })
     .then(data => {
-      console.log(data.data.records[0]);
       this.setState({userObj: data.data.records[0]});
     })
     .catch(err => {

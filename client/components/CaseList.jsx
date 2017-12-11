@@ -5,8 +5,8 @@ import Promise from 'bluebird';
 const CaseList = (props) => {
   console.log()
   return (
-    <div className="flex-container">
-      <div>Cases</div>
+    <div className="flex-container case-list">
+      <div className="form-title">Cases</div>
       <table>
         <tbody>
           <tr>
@@ -14,8 +14,14 @@ const CaseList = (props) => {
             <th>Subject</th>
             <th>Date</th>
           </tr>
-          {props.cases.forEach(supportCase => {
-            return <tr>TEST</tr>
+          {props.cases.map((supportCase, i)=> {
+            return (
+              <tr key={i}>
+                <td>{supportCase.CaseNumber}</td>
+                <td>{supportCase.Subject}</td>
+                <td>{supportCase.CreatedDate}</td>
+              </tr>
+            )
           })
         }
           </tbody>

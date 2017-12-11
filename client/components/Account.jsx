@@ -34,6 +34,7 @@ class App extends React.Component {
       }
     })
     .then(data => {
+      console.log(data.data.records)
       this.setState({cases: data.data.records})
     })
     .catch(err => console.log(err));
@@ -44,18 +45,22 @@ class App extends React.Component {
       <div className="account">
         <div className="flex-container title user-info">
           <div className="username">{this.props.user.Name}</div>
-            <table>
-             <tbody>
-                <tr>
-                  <td>email: {this.props.user.Email}</td>
-                  <td>ID Number: {this.props.user.EMPLIDPeoplesoftKey__c}</td>
-                </tr>
-                <tr></tr>
-              </tbody>
-            </table>
+          <img
+            src={`https://information.artic.edu/pspics/${this.props.user.EMPLIDPeoplesoftKey__c}`}
+            height="100"
+          />
+          <table>
+           <tbody>
+              <tr>
+                <td>email: {this.props.user.Email}</td>
+                <td>ID Number: {this.props.user.EMPLIDPeoplesoftKey__c}</td>
+              </tr>
+              <tr></tr>
+            </tbody>
+          </table>
         </div>
         <NewCase handleClick={this.createNewCase}/>
-        {this.state.cases ? <CaseList cases={this.state.cases}/> : <div></div>}
+        {this.state.cases ? <CaseList cases={this.state.cases}/> : <div className="flex-container">Loading Cases</div>}
       </div>
     )
   }
