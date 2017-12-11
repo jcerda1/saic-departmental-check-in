@@ -43,6 +43,8 @@ const supportCase = require('./controllers/salesforce/case.js');
 app.get('/contact', auth.getToken, contact.findById);
 
 app.get('/cases', auth.getToken, supportCase.findByContactId);
+
+app.post('/cases', auth.getToken, supportCase.createNew);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   Fallback Routes
 * * * * * * * * * * * * * * * * * * * * * * * * * * */

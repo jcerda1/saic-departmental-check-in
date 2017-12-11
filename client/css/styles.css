@@ -119,3 +119,15 @@ td {
 .case-list {
   align-self: flex-start;
 }
+
+.subject-column {
+  width: 50%;
+}
+
+.case-list table {
+  table-layout: fixed;
+}
+
+.case-list td {
+  font-size: 0.9em;
+}

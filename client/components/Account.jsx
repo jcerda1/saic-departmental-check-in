@@ -19,12 +19,18 @@ class App extends React.Component {
   }
 
   createNewCase(subject) {
-    console.log('creating case with subject: ', subject)
+    console.log('creating case with subject: ', subject, this.props.user.Id)
     axios.post('/cases', {
-      params : {
-        id: this.props.user.EMPLIDPeoplesoftKey__c
-      }
-    });
+      id: this.props.user.Id,
+      subject: subject
+    })
+    .then(data => {
+      console.log('Created new case successfully');
+      this.getCases();
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 
   getCases() {
@@ -34,7 +40,6 @@ class App extends React.Component {
       }
     })
     .then(data => {
-      console.log(data.data.records)
       this.setState({cases: data.data.records})
     })
     .catch(err => console.log(err));
