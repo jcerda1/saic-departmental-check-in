@@ -6,50 +6,36 @@ class CaseItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-     updating: false,
-     newSubject: ''
     };
-    this.handleClick = this.handleClick.bind(this);
-    this.handleInput = this.handleInput.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
-  handleClick() {
-    this.setState({updating: true});
-  }
-
-  handleInput(event) {
-    this.setState({newSubject: event.target.value});
-  }
+  handleUpdate(event) {
+    this.props.handleUpdate(event.target.value, this.props.supportCase.Id);
+    event.target.value = 'select'
+  };
 
   render () {
-    const {CaseNumber, Subject, CreatedDate} = this.props.supportCase;
+    const {CaseNumber, Subject, CreatedDate, Status} = this.props.supportCase;
     const date = moment(CreatedDate).format('MMMM Do YYYY, h:mm a');
 
     return (
       <tr>
         <td>{CaseNumber}</td>
         <td>
-          {this.state.updating ?
-            <div className="subject">
-              <input
-                type="text"
-                value={this.state.newSubject}
-                name="new-subject"
-              />
-              <div
-                className="btn update"
-                name="new-subject"
-              >Submit</div>
-            </div>
-            :
-            <div className="subject">
-            <div>{Subject}</div>
-            <div
-              className="btn update"
-              onClick={this.handleClick}
-            >Update</div>
-            </div>
-          }
+          <div>{Subject}</div>
+        </td>
+        <td>
+          <div>{Status}</div>
+          <div>
+            <select onChange={this.handleUpdate}>
+              <option value="select" defaultValue>select</option>
+              <option value="New">New</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Closed">Closed</option>
+              <option value="Void">Void</option>
+            </select>
+          </div>
         </td>
         <td>{date}</td>
       </tr>

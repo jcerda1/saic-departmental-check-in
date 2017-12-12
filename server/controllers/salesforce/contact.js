@@ -2,12 +2,9 @@ const axios = require('axios');
 
 exports.findById = (req, res) => {
   const url = `https://saic--HDBox.cs3.my.salesforce.com/services/data/v20.0/query?q=`;
-  const fields = [//add fields here
-                    'name',
-                    'email',
-                    'EMPLIDPeoplesoftKey__c',
-                    'ID'
-                  ].join(',');
+
+  //add fields here
+  const fields = ['name', 'email', 'EMPLIDPeoplesoftKey__c', 'ID'].join(',');
 
   const id = req.param('id');
   const query = `SELECT ${fields} from Contact WHERE EMPLIDPeoplesoftKey__c = '${id}'`;
@@ -18,11 +15,9 @@ exports.findById = (req, res) => {
     }
   })
   .then(data => {
-    console.log(data.data);
     res.send(data.data);
   })
   .catch(err => {
-    console.log(err.response.data);
     res.send(err.response.data);
   })
 }

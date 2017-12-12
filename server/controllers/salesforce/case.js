@@ -4,10 +4,10 @@ exports.findByContactId = (req, res) => {
   const url = `https://saic--HDBox.cs3.my.salesforce.com/services/data/v20.0/query?q=`;
 
   //add fields here
-  const fields = ['Subject', 'CaseNumber', 'CreatedDate'].join(',');
+  const fields = ['Subject', 'CaseNumber', 'CreatedDate', 'Id', 'Status'].join(',');
 
   const id = req.param('id');
-  const query = `SELECT ${fields} from Case WHERE ContactId = '${id}' ORDER BY CreatedDate DESC LIMIT 5`;
+  const query = `SELECT ${fields} FROM Case WHERE ContactId = '${id}'ORDER BY CreatedDate DESC LIMIT 5`;
 
   axios.get(url + query, {
     headers: {
@@ -23,7 +23,7 @@ exports.findByContactId = (req, res) => {
 };
 
 exports.createNew = (req, res) => {
-  const url = `https://saic--HDBox.cs3.my.salesforce.com/services/data/v20.0/sobjects/Case`;
+  const url = `https://saic--HDBox.cs3.my.salesforce.com/services/data/v20.0/sobjects/Case/`;
 
   const caseData = {
     Subject: req.body.subject,
@@ -47,7 +47,6 @@ exports.createNew = (req, res) => {
     }
   })
   .then(data => {
-    console.log(data)
     res.send(data.data);
   })
   .catch(err => {
@@ -55,19 +54,21 @@ exports.createNew = (req, res) => {
   })
 };
 
-exports.updateSubject = (req, res) => {
-  const url = `https://saic--HDBox.cs3.my.salesforce.com/services/data/v20.0/sobjects/Case`;
+exports.updateStatus = (req, res) => {
+  const url = `https://saic--HDBox.cs3.my.salesforce.com/services/data/v20.0/sobjects/Case/${req.body.id}`;
 
-  axios.patch(url, {Subject: req.body.subject}, {
+  axios.patch(url, {Status: req.body.status}, {
     headers: {
       Authorization: 'Bearer ' + req.access_token
     }
   })
   .then(data => {
-    console.log(data)
+    //console.log(data.data)
     res.send(data.data);
   })
   .catch(err => {
+    console.log('ERROR')
+    console.log(err)
     res.send(err);
   })
 };

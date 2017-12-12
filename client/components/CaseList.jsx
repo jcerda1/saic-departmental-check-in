@@ -8,12 +8,17 @@ const CaseList = (props) => {
       <table>
         <tbody>
           <tr>
-            <th>Case #</th>
+            <th>Case#</th>
             <th className="subject-column">Subject</th>
-            <th>Date</th>
+            <th>Status</th>
+            <th>Date Created</th>
           </tr>
           {props.cases.map((supportCase, i)=> {
-            return <CaseItem supportCase={supportCase} key={i}/>
+            return <CaseItem
+                    supportCase={supportCase}
+                    key={i}
+                    handleUpdate={props.handleUpdate}
+                  />
           })
         }
           </tbody>

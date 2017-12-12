@@ -45,6 +45,8 @@ app.get('/contact', auth.getToken, contact.findById);
 app.get('/cases', auth.getToken, supportCase.findByContactId);
 
 app.post('/cases', auth.getToken, supportCase.createNew);
+
+app.put('/cases', auth.getToken, supportCase.updateStatus);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   Fallback Routes
 * * * * * * * * * * * * * * * * * * * * * * * * * * */

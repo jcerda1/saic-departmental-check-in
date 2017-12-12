@@ -12,6 +12,7 @@ class App extends React.Component {
     };
     this.createNewCase = this.createNewCase.bind(this);
     this.getCases = this.getCases.bind(this);
+    this.updateCaseStatus = this.updateCaseStatus.bind(this);
   }
 
   componentWillMount() {
@@ -34,6 +35,7 @@ class App extends React.Component {
   }
 
   getCases() {
+    console.log('getting cases for Contact Id: ', this.props.user.Id)
     axios.get('/cases', {
       params: {
         id: this.props.user.Id
@@ -42,15 +44,20 @@ class App extends React.Component {
     .then(data => {
       this.setState({cases: data.data.records})
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err)
+    });
   }
 
-  updateCaseSubject(newSubject) {
+  updateCaseStatus(status, caseId) {
+    console.log(`updating case with new status: ${status} and Case ID: ${caseId}`)
     axios.put('/cases', {
-      subject: newSubject
+      status: status,
+      id: caseId
     })
-    .then(data => {
-      console.log(data);
+    .then(() => {
+      console.log("successfully updated");
+      this.getCases();
     })
     .catch(err => {
       console.log(err);
@@ -63,8 +70,8 @@ class App extends React.Component {
         <div className="flex-container title user-info">
           <div className="username">{this.props.user.Name}</div>
           <img
-            src={`https://information.artic.edu/pspics/${this.props.user.EMPLIDPeoplesoftKey__c}`}
-            height="100"
+            //src={`https://information.artic.edu/pspics/${this.props.user.EMPLIDPeoplesoftKey__c}`}
+            //height="100"
           />
           <table>
            <tbody>
@@ -77,7 +84,12 @@ class App extends React.Component {
           </table>
         </div>
         <NewCase handleClick={this.createNewCase}/>
-        {this.state.cases ? <CaseList cases={this.state.cases}/> : <div className="flex-container">Loading Cases</div>}
+        {this.state.cases ? <CaseList
+          cases={this.state.cases}
+          handleUpdate={this.updateCaseStatus}
+        />
+        :
+        <div className="flex-container">Loading Cases</div>}
       </div>
     )
   }
