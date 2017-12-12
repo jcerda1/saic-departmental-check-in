@@ -18,6 +18,7 @@ const CaseList = (props) => {
                     supportCase={supportCase}
                     key={i}
                     handleUpdate={props.handleUpdate}
+                    refreshList={props.refreshList}
                   />
           })
         }

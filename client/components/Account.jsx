@@ -20,47 +20,59 @@ class App extends React.Component {
   }
 
   createNewCase(subject) {
-    console.log('creating case with subject: ', subject, this.props.user.Id)
-    axios.post('/cases', {
-      id: this.props.user.Id,
-      subject: subject
-    })
-    .then(data => {
-      console.log('Created new case successfully');
-      this.getCases();
-    })
-    .catch(err => {
-      console.log(err)
-    })
+    return new Promise((resolve, reject) => {
+      console.log('creating case with subject: ', subject, this.props.user.Id)
+      axios.post('/cases', {
+        id: this.props.user.Id,
+        subject: subject
+      })
+      .then(data => {
+        console.log('Created new case successfully');
+        this.getCases()
+        .then((data) => resolve(data));
+      })
+      .catch(err => {
+        console.log(err);
+        reject(err);
+      })
+    });
   }
 
   getCases() {
-    console.log('getting cases for Contact Id: ', this.props.user.Id)
-    axios.get('/cases', {
-      params: {
-        id: this.props.user.Id
-      }
-    })
-    .then(data => {
-      this.setState({cases: data.data.records})
-    })
-    .catch(err => {
-      console.log(err)
+    return new Promise((resolve, reject) => {
+      console.log('getting cases for Contact Id: ', this.props.user.Id)
+      axios.get('/cases', {
+        params: {
+          id: this.props.user.Id
+        }
+      })
+      .then(data => {
+        this.setState({cases: data.data.records});
+        resolve(data);
+      })
+      .catch(err => {
+        console.log(err);
+        reject(err);
+      });
     });
   }
 
   updateCaseStatus(status, caseId) {
     console.log(`updating case with new status: ${status} and Case ID: ${caseId}`)
-    axios.put('/cases', {
+
+    return new Promise((resolve, reject) => {
+      axios.put('/cases', {
       status: status,
       id: caseId
-    })
-    .then(() => {
-      console.log("successfully updated");
-      this.getCases();
-    })
-    .catch(err => {
-      console.log(err);
+      })
+      .then(() => {
+        console.log("successfully updated");
+        resolve();
+      })
+      .catch(err => {
+        console.log(err);
+        reject(err);
+      });
     });
   }
 
@@ -70,8 +82,8 @@ class App extends React.Component {
         <div className="flex-container title user-info">
           <div className="username">{this.props.user.Name}</div>
           <img
-            //src={`https://information.artic.edu/pspics/${this.props.user.EMPLIDPeoplesoftKey__c}`}
-            //height="100"
+            src={`https://information.artic.edu/pspics/${this.props.user.EMPLIDPeoplesoftKey__c}`}
+            height="100"
           />
           <table>
            <tbody>
@@ -86,6 +98,7 @@ class App extends React.Component {
         <NewCase handleClick={this.createNewCase}/>
         {this.state.cases ? <CaseList
           cases={this.state.cases}
+          refreshList={this.getCases}
           handleUpdate={this.updateCaseStatus}
         />
         :
