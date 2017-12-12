@@ -41,9 +41,7 @@ input {
 }
 
 .title {
-  font-weight: bold;
   font-size: 30px;
-  align-self: flex-end;
 }
 
 .text-input {
@@ -60,21 +58,29 @@ input {
 
 .user-info {
   align-self: center;
+  font-weight: normal;
+  font-size: 18px;
 }
 
-table {
-  width: 85%;
+.user-info table {
+  padding-top: 20px;
 }
 
+.user-info td {
+  padding: 0 40px;
+}
+
+/*
 td {
   text-align: center;
   padding: 10px 20px;
   font-size: 0.5em;
 }
-
+*/
 .username {
   margin-bottom: 30px;
-
+  width: 80%;
+  text-align: center;
 }
 
 .new-case {
@@ -87,6 +93,14 @@ td {
   border: 1px solid #404040;
   border-radius: 15px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #F8F8F8;
+  color: #404040;
+}
+
+.btn:hover {
+  background-color: #404040;
+  color: #F8F8F8;
 }
 
 .new-case div {
@@ -105,30 +119,58 @@ td {
 }
 
 .form-title {
-  margin-bottom: 20px;
   font-size: 24px;
 }
 
 .case-subject {
-  width: 20em;
+  width: 25em;
 }
 
 .case-list {
   align-self: flex-start;
 }
 
-.subject-column {
+/*.subject-column {
   width: 30%;
 }
-
-.case-list table {
+*/
+/*.case-list table {
   table-layout: fixed;
 }
-
-.case-list td {
+*/
+/*.case-list td {
   font-size: 0.9em;
-}
+}*/
 
 .update, .submit {
   font-size: 0.7em;
+}
+
+.status {
+  justify-content: flex-end;
+  width: 164px;
+}
+
+.create {
+  padding: 0 3em;
+}
+
+.line {
+  border-bottom: 1px solid #B0B0B0;
+}
+
+.case-table {
+  width: 75%;
+  border-collapse: collapse;
+}
+
+.case-table td {
+  border-top :1px solid #B0B0B0;
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 0.9em;
+}
+
+.case-table tr:hover {
+  background-color: #f5f5f5;
 }

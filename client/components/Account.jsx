@@ -80,16 +80,16 @@ class App extends React.Component {
     return (
       <div className="account">
         <div className="flex-container title user-info">
-          <div className="username">{this.props.user.Name}</div>
+          <div className="username line title">{this.props.user.Name}</div>
           <img
             src={`https://information.artic.edu/pspics/${this.props.user.EMPLIDPeoplesoftKey__c}`}
-            height="100"
+            height="125"
           />
           <table>
            <tbody>
               <tr>
-                <td>email: {this.props.user.Email}</td>
-                <td>ID Number: {this.props.user.EMPLIDPeoplesoftKey__c}</td>
+                <td><b>email: </b>{this.props.user.Email}</td>
+                <td><b>ID Number: </b>{this.props.user.EMPLIDPeoplesoftKey__c}</td>
               </tr>
               <tr></tr>
             </tbody>

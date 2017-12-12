@@ -30,7 +30,7 @@ class NewCase extends React.Component {
   render() {
     return (
       <div className="flex-container new-case">
-        <div className="form-title">New Case</div>
+        <div className="form-title username line">New Case</div>
         <div className="flex-row">
           <div>Subject:</div>
           <div>
@@ -45,7 +45,8 @@ class NewCase extends React.Component {
           {this.state.updating ?
             <img src="assets/loading.gif"
                alt="Image not found"
-               height="100"
+               height="35"
+               className="create"
             />
             :
             <div className="btn" onClick={this.handleClick}>Create Case</div>

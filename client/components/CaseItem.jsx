@@ -44,17 +44,17 @@ class CaseItem extends React.Component {
     const date = moment(CreatedDate).format('MMMM Do YYYY, h:mm a');
 
     return (
-      <tr>
+      <tr className="case-line">
         <td>{CaseNumber}</td>
         <td>
           <div>{Subject}</div>
         </td>
-        <td >
+        <td>
           {this.state.loading ?
             <div className="flex-row">
               <img src="assets/loading.gif"
-                 alt="Image not found"
-                 height="100"
+                 alt="Loading"
+                 height="30"
               />
             </div>
             :
@@ -69,7 +69,7 @@ class CaseItem extends React.Component {
               <div className="btn submit" onClick={this.handleSubmit}>Submit</div>
             </div>
             :
-            <div className="flex-row">{Status}
+            <div className="flex-row status">{Status}
               <div className="btn update" onClick={this.handleClick}>update</div>
             </div>
           }

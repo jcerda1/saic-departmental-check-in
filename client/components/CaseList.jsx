@@ -4,8 +4,8 @@ import CaseItem from './CaseItem.jsx';
 const CaseList = (props) => {
   return (
     <div className="flex-container case-list">
-      <div className="form-title">Cases</div>
-      <table>
+      <div className="form-title line username">Cases</div>
+      <table className="case-table">
         <tbody>
           <tr>
             <th>Case#</th>
