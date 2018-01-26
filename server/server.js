@@ -7,6 +7,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
+
+const { contactRouter } = require('./routes/contactRoutes.js');
+
 const app = express();
 
 const port = process.env.PORT || 3000;
@@ -38,15 +41,18 @@ const contact = require('./controllers/salesforce/contact.js');
 const supportCase = require('./controllers/salesforce/case.js');
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
-  API Routes
+  Routes
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
-app.get('/contact', auth.getToken, contact.findById);
+
+//app.get('/contact', auth.getToken, contact.findById);
+app.use('/contact', contactRouter);
 
 app.get('/cases', auth.getToken, supportCase.findByContactId);
 
 app.post('/cases', auth.getToken, supportCase.createNew);
 
 app.put('/cases', auth.getToken, supportCase.updateStatus);
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   Fallback Routes
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
