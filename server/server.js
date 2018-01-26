@@ -20,7 +20,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const config = require(NODE_ENV === 'production' ? '../webpack.prod.js' : '../webpack.dev.js');
 const compiler = webpack(config);
-const webpackDevMiddlewareInstance = webpackDevMiddleware( compiler, {
+const webpackDevMiddlewareInstance = webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath
 });
 app.use(webpackDevMiddlewareInstance);

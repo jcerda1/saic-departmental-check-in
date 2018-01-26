@@ -27,7 +27,6 @@ class App extends React.Component {
         subject: subject
       })
       .then(data => {
-        console.log('Created new case successfully');
         this.getCases()
         .then((data) => resolve(data));
       })
@@ -40,7 +39,6 @@ class App extends React.Component {
 
   getCases() {
     return new Promise((resolve, reject) => {
-      console.log('getting cases for Contact Id: ', this.props.user.Id)
       axios.get('/cases', {
         params: {
           id: this.props.user.Id
@@ -58,8 +56,6 @@ class App extends React.Component {
   }
 
   updateCaseStatus(status, caseId) {
-    console.log(`updating case with new status: ${status} and Case ID: ${caseId}`)
-
     return new Promise((resolve, reject) => {
       axios.put('/cases', {
       status: status,

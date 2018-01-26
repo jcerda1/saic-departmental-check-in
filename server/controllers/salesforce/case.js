@@ -25,6 +25,7 @@ exports.findByContactId = (req, res) => {
 exports.createNew = (req, res) => {
   const url = `https://saic--HDBox.cs3.my.salesforce.com/services/data/v20.0/sobjects/Case/`;
 
+  //hardcoded test case
   const caseData = {
     Subject: req.body.subject,
     ContactId: req.body.id,
