@@ -6,7 +6,7 @@ exports.findByContactId = (req, res) => {
   //add fields here
   const fields = ['Subject', 'CaseNumber', 'CreatedDate', 'Id', 'Status'].join(',');
 
-  const id = req.param('id');
+  const id = req.query.id;
   const query = `SELECT ${fields} FROM Case WHERE ContactId = '${id}'ORDER BY CreatedDate DESC LIMIT 5`;
 
   axios.get(url + query, {

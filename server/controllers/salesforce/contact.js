@@ -6,7 +6,7 @@ exports.findById = (req, res) => {
   //add fields here
   const fields = ['name', 'email', 'EMPLIDPeoplesoftKey__c', 'ID'].join(',');
 
-  const id = req.param('id');
+  const id = req.query.id;
   const query = `SELECT ${fields} from Contact WHERE EMPLIDPeoplesoftKey__c = '${id}'`;
 
   axios.get(url + query, {
