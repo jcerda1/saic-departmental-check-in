@@ -1,3 +1,4 @@
+
 if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
   require('dotenv').config();
 }
@@ -9,6 +10,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
 const { contactRouter } = require('./routes/contactRoutes.js');
+const { caseRouter } = require('./routes/caseRoutes.js');
 
 const app = express();
 
@@ -26,32 +28,15 @@ const webpackDevMiddlewareInstance = webpackDevMiddleware( compiler, {
 
 app.use(webpackDevMiddlewareInstance);
 
-const server = app.listen(port || 3000);
-console.log('server is listening on port ' + port);
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(express.static(__dirname));
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
-  Salesforce Controllers
+  API Routes
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
-const auth = require('./controllers/salesforce/auth.js');
-const contact = require('./controllers/salesforce/contact.js');
-const supportCase = require('./controllers/salesforce/case.js');
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * *
-  Routes
-* * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-//app.get('/contact', auth.getToken, contact.findById);
 app.use('/contact', contactRouter);
-
-app.get('/cases', auth.getToken, supportCase.findByContactId);
-
-app.post('/cases', auth.getToken, supportCase.createNew);
-
-app.put('/cases', auth.getToken, supportCase.updateStatus);
+app.use('/cases', caseRouter)
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   Fallback Routes
@@ -67,6 +52,9 @@ app.get('*.js', function (req, res, next) {
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../index.html'))
 });
+
+const server = app.listen(port || 3000);
+console.log('server is listening on port ' + port);
 
 module.exports.server = server;
 module.exports.app = app;

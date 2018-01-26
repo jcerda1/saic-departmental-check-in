@@ -63,7 +63,6 @@ exports.updateStatus = (req, res) => {
     }
   })
   .then(data => {
-    //console.log(data.data)
     res.send(data.data);
   })
   .catch(err => {
