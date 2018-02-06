@@ -25,6 +25,7 @@ const webpackDevMiddlewareInstance = webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath
 });
 app.use(webpackDevMiddlewareInstance);
+app.use(webpackHotMiddleware(compiler));
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   API Routes

@@ -5,7 +5,7 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    app: './client/src/index.jsx',
+    app: ['react-hot-loader/patch', './client/src/index.jsx'],
   },
   module: {
     rules: [
@@ -25,7 +25,8 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env','react']
+            presets: ['env','react'],
+            plugins: ['react-hot-loader/babel']
           }
         }
       },
@@ -43,7 +44,8 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env','react']
+            presets: ['env','react'],
+            plugins: ['react-hot-loader/babel']
           }
         }
       },
