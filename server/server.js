@@ -18,6 +18,7 @@ app.use(express.static(__dirname));
 /*Initialize Webpack*/
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require(NODE_ENV === 'production' ? '../webpack.prod.js' : '../webpack.dev.js');
 const compiler = webpack(config);
 const webpackDevMiddlewareInstance = webpackDevMiddleware(compiler, {
