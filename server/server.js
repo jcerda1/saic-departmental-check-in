@@ -26,7 +26,6 @@ const webpackDevMiddlewareInstance = webpackDevMiddleware(compiler, {
 });
 app.use(webpackDevMiddlewareInstance);
 if (process.env.HOT) {
-  console.log('HOT');
   app.use(webpackHotMiddleware(compiler));
 }
 

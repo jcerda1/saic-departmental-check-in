@@ -13,7 +13,6 @@ const render = Component => {
 }
 
 if (module.hot && HOT) {
-  console.log("HOT")
   render(App);
 
   module.hot.accept('../components/App.jsx', () => {
