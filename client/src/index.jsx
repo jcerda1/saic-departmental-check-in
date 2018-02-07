@@ -12,13 +12,14 @@ const render = Component => {
   )
 }
 
-if (module.hot) {
+if (module.hot && HOT) {
   console.log("HOT")
   render(App);
 
   module.hot.accept('../components/App.jsx', () => {
+    console.log('Reloading')
     const nextApp = require('../components/App.jsx').default;
-    render(NextApp);
+    render(nextApp);
   })
 } else {
   render(App);
