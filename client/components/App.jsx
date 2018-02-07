@@ -1,7 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Promise from 'bluebird';
-import { BrowserRouter, Route, Link, browserHistory } from 'react-router-dom';
 import '../css/styles.css';
 import Account from './Account.jsx';
 
@@ -40,6 +38,7 @@ class App extends React.Component {
         <Account user={this.state.userObj}/>
       :
       <div className="main">
+
         <div className="flex-container title">Please scan your ID</div>
         <div className="flex-container fa fa-id-card"></div>
         <div className="flex-container text-input">
