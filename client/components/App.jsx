@@ -42,6 +42,7 @@ class App extends React.Component {
       <div className="main">
         <div className="flex-container title">Please scan your ID</div>
         <div className="flex-container fa fa-id-card"></div>
+        TEST
         <div className="flex-container text-input">
           <form >
             <input

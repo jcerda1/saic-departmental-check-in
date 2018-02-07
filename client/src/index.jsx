@@ -12,11 +12,14 @@ const render = Component => {
   )
 }
 
-render(App);
-
 if (module.hot) {
+  console.log("HOT")
+  render(App);
+
   module.hot.accept('../components/App.jsx', () => {
     const nextApp = require('../components/App.jsx').default;
     render(NextApp);
   })
+} else {
+  render(App);
 }

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node ./server/server.js",
     "server": "nodemon ./server/server.js",
+    "hot": "HOT=true nodemon ./server/server.js",
     "test": "NODE_ENV=test jest",
     "local-test": "NODE_ENV=test jest --watch",
     "windows-test": ".NODE_ENV=test& jest --watch --no-cache",

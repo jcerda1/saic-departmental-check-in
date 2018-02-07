@@ -25,7 +25,9 @@ const webpackDevMiddlewareInstance = webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath
 });
 app.use(webpackDevMiddlewareInstance);
-app.use(webpackHotMiddleware(compiler));
+if (process.env.HOT) {
+  app.use(webpackHotMiddleware(compiler));
+}
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   API Routes
@@ -53,6 +55,5 @@ app.get('*', (req, res) => {
 
 const server = app.listen(port);
 console.log('server is listening on port ' + port);
-
 module.exports.server = server;
 module.exports.webpackDevMiddlewareInstance = webpackDevMiddlewareInstance;
