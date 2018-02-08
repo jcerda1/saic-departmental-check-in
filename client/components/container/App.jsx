@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-const mapStateToProps = ({ user }) => {
+const mapStateToProps = ({ contact }) => {
   return {
-    user: user
+    contact: contact
   }
 };
