@@ -6,7 +6,7 @@ import { AppContainer } from 'react-hot-loader';
 import App from '../components/App.jsx';
 import initialState from './reducers/initialState.js';
 
-const store = configureStore(initialState);
+const store = configureStore();
 
 const render = Component => {
   ReactDOM.render(
