@@ -4,8 +4,9 @@ import configureStore from './store/configureStore';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import App from '../components/App.jsx';
+import initialState from './reducers/initialState.js';
 
-const store = configureStore();
+const store = configureStore(initialState);
 
 const render = Component => {
   ReactDOM.render(
