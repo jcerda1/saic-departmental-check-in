@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import App from '../components/App.jsx';
 import initialState from './reducers/initialState.js';
+import Root from '../containers/Root.js';
 
 const store = configureStore();
 
