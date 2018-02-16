@@ -1,5 +1,5 @@
 const request = require('supertest');
-//const appServer = require('../server/server.js');
+const appServer = require('../server/app.js');
 
 // beforeEach(function() {
 //   originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
