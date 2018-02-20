@@ -6,10 +6,10 @@ const {
   updateStatus
 } = require('../controllers/salesforce/case.js');
 
-const caseRoute = Router();
-
-caseRoute.get('/', getToken, findByContactId);
-caseRoute.post('/', getToken, createNew);
-caseRoute.put('/', getToken, updateStatus);
-
-exports.caseRouter = caseRoute;
+module.exports = (app) => {
+  const caseRoute = Router();
+  app.use('/cases', caseRoute);
+  caseRoute.get('/', getToken, findByContactId);
+  caseRoute.post('/', getToken, createNew);
+  caseRoute.put('/', getToken, updateStatus);
+};

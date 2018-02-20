@@ -33,10 +33,10 @@ if (process.env.HOT) {
   API Routes
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
 const contactRouter = require('./routes/contactRoutes.js');
-const { caseRouter } = require('./routes/caseRoutes.js');
+const caseRouter = require('./routes/caseRoutes.js');
 
 contactRouter(app);
-app.use('/cases', caseRouter);
+caseRouter(app);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   Fallback Routes
