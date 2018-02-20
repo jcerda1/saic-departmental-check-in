@@ -5,7 +5,7 @@ if (NODE_ENV !== 'production' && NODE_ENV !== 'test') {
 }
 
 /*Initialize Express*/
-const express = require('express')
+const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const port = PORT || 3000;
@@ -32,10 +32,10 @@ if (process.env.HOT) {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
   API Routes
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
-const { contactRouter } = require('./routes/contactRoutes.js');
+const contactRouter = require('./routes/contactRoutes.js');
 const { caseRouter } = require('./routes/caseRoutes.js');
 
-app.use('/contact', contactRouter);
+contactRouter(app);
 app.use('/cases', caseRouter);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
