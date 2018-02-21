@@ -7,7 +7,7 @@
     "start": "node ./server/server.js",
     "server": "nodemon ./server/server.js",
     "hot": "HOT=true nodemon ./server/server.js",
-    "test": "mocha",
+    "test": "NODE_ENV=test mocha",
     "local-test": "NODE_ENV=test jest --watch",
     "windows-test": ".NODE_ENV=test& jest --watch --no-cache",
     "prod-test": "docker build -t react-express-webpack . && docker run -it -p 8000:8000 react-express-webpack npm test",

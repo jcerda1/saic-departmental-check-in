@@ -16,17 +16,19 @@ app.use(bodyParser.json({ type: 'application/json' }));
 app.use(express.static(__dirname));
 
 /*Initialize Webpack*/
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const config = require(NODE_ENV === 'production' ? '../webpack.prod.js' : '../webpack.dev.js');
-const compiler = webpack(config);
-const webpackDevMiddlewareInstance = webpackDevMiddleware(compiler, {
-  publicPath: config.output.publicPath
-});
-app.use(webpackDevMiddlewareInstance);
-if (process.env.HOT) {
-  app.use(webpackHotMiddleware(compiler));
+if (NODE_ENV !== 'test') {
+  const webpack = require('webpack');
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware');
+  const config = require(NODE_ENV === 'production' ? '../webpack.prod.js' : '../webpack.dev.js');
+  const compiler = webpack(config);
+  const webpackDevMiddlewareInstance = webpackDevMiddleware(compiler, {
+    publicPath: config.output.publicPath
+  });
+  app.use(webpackDevMiddlewareInstance);
+  if (process.env.HOT) {
+    app.use(webpackHotMiddleware(compiler));
+  }
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
