@@ -4,7 +4,7 @@ const supertest = require('supertest');
 const expect = require('chai').expect;
 const app= require('../server/app.js');
 
-describe('Index Route', () => {
+describe('Index and Fallback Routes', () => {
   let request;
 
   beforeEach(() => {
@@ -17,4 +17,12 @@ describe('Index Route', () => {
       done();
     })
   });
+
+  it('Should fallback to the index page for undefined routes', (done) => {
+    request.get('/random').expect(200, (err, res) => {
+      expect(res.headers['content-type']).to.equal('text/html; charset=UTF-8');
+      done();
+    })
+  });
+
 });
