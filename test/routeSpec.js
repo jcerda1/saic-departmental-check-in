@@ -3,13 +3,9 @@ const proxyquire = require('proxyquire');
 const sinon = require('sinon');
 const supertest = require('supertest');
 const chai = require('chai');
-const sinonChai = require('sinon-chai');
 const expect = chai.expect;
 const getToken = require('../server/controllers/salesforce/auth.js');
 const getTokenMock = require('../test/mocks/authmock.js');
-
-chai.use(sinonChai);
-
 
 // describe('Index and Fallback Routes', () => {
 //   let request;
@@ -41,25 +37,24 @@ describe('Contact Routes', (done) => {
   let getContactMock;
   let contactRoute;
 
-  //beforeEach(() => {
+  beforeEach(() => {
     app = express();
-    getTokenSpy = sinon.spy();
-
+    getTokenSpy = sinon.spy(getTokenMock);
 
     contactRoute = proxyquire('../server/routes/contactRoutes.js', {
       '../controllers/salesforce/auth.js': {
-        getToken: getTokenMock
+        getToken: getTokenSpy
       }
     })
 
     contactRoute(app);
-
     request = supertest(app);
-  //});
+  });
 
   it('it should pass the request through authentication middleware', (done) => {
     request.get('/contact').expect(200, (err, res) => {
-      expect(getTokenMock).to.have.been.called();
+      console.log(getTokenSpy.called)
+      expect(getTokenSpy.called).to.equal(true);
       done();
     });
   });
