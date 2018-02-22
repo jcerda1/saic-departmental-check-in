@@ -34,16 +34,18 @@ const getTokenMock = require('../test/mocks/authmock.js');
 describe('Contact Routes', (done) => {
   let request;
   let getTokenSpy;
-  let getContactMock;
+  let getContactStub;
   let contactRoute;
 
   beforeEach(() => {
     app = express();
     getTokenSpy = sinon.spy(getTokenMock);
+    getContactStub = sinon.spy(sinon.stub());
 
     contactRoute = proxyquire('../server/routes/contactRoutes.js', {
       '../controllers/salesforce/auth.js': {
-        getToken: getTokenSpy
+        getToken: getTokenSpy,
+        findById: getContactStub
       }
     })
 
@@ -51,10 +53,16 @@ describe('Contact Routes', (done) => {
     request = supertest(app);
   });
 
-  it('it should pass the request through authentication middleware', (done) => {
+  it('Should pass the request through authentication middleware', (done) => {
     request.get('/contact').expect(200, (err, res) => {
-      console.log(getTokenSpy.called)
       expect(getTokenSpy.called).to.equal(true);
+      done();
+    });
+  });
+
+  it('Should pass the request to the contact controller', (done) => {
+    request.get('/contact').expect(200, (err, res) => {
+      expect(getContactStub.called).to.equal(true);
       done();
     });
   });

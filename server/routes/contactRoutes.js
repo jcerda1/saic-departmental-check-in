@@ -4,11 +4,6 @@ const { findById } = require('../controllers/salesforce/contact.js');
 
 module.exports = (app) => {
   const contactRoute = Router();
-
   app.use('/contact', contactRoute);
-
-  contactRoute.get('/', getToken, (req, res) => {
-    console.log('REQUEST', getToken.called)
-    res.end()
-  });
+  contactRoute.get('/', getToken, findById);
 }
