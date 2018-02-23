@@ -126,4 +126,11 @@ describe('Case Routes', (done) => {
     });
   });
 
+  it('Should respond to A GET request with JSON data', (done) => {
+    request.get('/cases').expect(200, (err, res) => {
+      expect(res.headers['content-type']).to.equal('application/json; charset=utf-8');
+      done();
+    });
+  });
+
 });
