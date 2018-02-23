@@ -36,18 +36,18 @@ describe('Index and Fallback Routes', () => {
 
 describe('Contact Routes', (done) => {
   let request;
-  let getTokenSpy;
+  let getTokenStub;
   let getContactStub;
   let contactRoute;
 
   beforeEach(() => {
     app = express();
-    getTokenSpy = sinon.spy(getTokenMock);
+    getTokenStub = sinon.spy(getTokenMock);
     getContactStub = sinon.spy(findById);
 
     contactRoute = proxyquire('../server/routes/contactRoutes.js', {
       '../controllers/salesforce/auth.js': {
-        getToken: getTokenSpy,
+        getToken: getTokenStub,
       },
       '../controllers/salesforce/contact.js': {
         findById: getContactStub
@@ -60,7 +60,7 @@ describe('Contact Routes', (done) => {
 
   it('Should pass A GET request through authentication middleware', (done) => {
     request.get('/contact').expect(200, (err, res) => {
-      expect(getTokenSpy.called).to.equal(true);
+      expect(getTokenStub.called).to.equal(true);
       done();
     });
   });
@@ -98,17 +98,17 @@ describe('Contact Routes', (done) => {
 
 describe('Case Routes', (done) => {
   let request;
-  let getTokenSpy;
-  let getCasesStub;
+  let getTokenStub;
+  let findByIdStub;
   let caseRoute;
 
   beforeEach(() => {
     app = express();
-    getTokenSpy = sinon.spy(getTokenMock);
+    getTokenStub = sinon.spy(getTokenMock);
 
     caseRoute = proxyquire('../server/routes/caseRoutes.js', {
       '../controllers/salesforce/auth.js': {
-        getToken: getTokenSpy,
+        getToken: getTokenStub,
       }
     });
 
@@ -118,7 +118,7 @@ describe('Case Routes', (done) => {
 
   it('Should pass a GET request through authentication middleware', (done) => {
     request.get('/cases').expect(200, (err, res) => {
-      expect(getTokenSpy.called).to.equal(true);
+      expect(getTokenStub.called).to.equal(true);
       done();
     });
   });
