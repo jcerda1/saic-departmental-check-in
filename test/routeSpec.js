@@ -58,21 +58,21 @@ describe('Contact Routes', (done) => {
     request = supertest(app);
   });
 
-  it('Should pass the request through authentication middleware', (done) => {
+  it('Should pass A GET request through authentication middleware', (done) => {
     request.get('/contact').expect(200, (err, res) => {
       expect(getTokenSpy.called).to.equal(true);
       done();
     });
   });
 
-  it('Should pass the request to the contact controller', (done) => {
+  it('Should pass A GET request to the contact controller', (done) => {
     request.get('/contact').expect(200, (err, res) => {
       expect(getContactStub.called).to.equal(true);
       done();
     });
   });
 
-  it('Should respond with JSON User data', (done) => {
+  it('Should respond to A GET request with JSON User data', (done) => {
     request.get('/contact').expect(200, (err, res) => {
       expect(res.headers['content-type']).to.equal('application/json; charset=utf-8');
       expect(res.body).to.deep.equal({
@@ -116,7 +116,7 @@ describe('Case Routes', (done) => {
     request = supertest(app);
   });
 
-  it('Should pass the request through authentication middleware', (done) => {
+  it('Should pass a GET request through authentication middleware', (done) => {
     request.get('/cases').expect(200, (err, res) => {
       expect(getTokenSpy.called).to.equal(true);
       done();
