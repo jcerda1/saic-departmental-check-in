@@ -47,7 +47,7 @@ describe('Contact Routes', (done) => {
 
     contactRoute = proxyquire('../server/routes/contactRoutes.js', {
       '../controllers/salesforce/auth.js': {
-        getToken: getTokenStub,
+        getToken: getTokenStub
       },
       '../controllers/salesforce/contact.js': {
         findById: getContactStub
@@ -97,13 +97,12 @@ describe('Case Routes', (done) => {
 
     caseRoute = proxyquire('../server/routes/caseRoutes.js', {
       '../controllers/salesforce/auth.js': {
-        getToken: getTokenStub,
-        '../controllers/salesforce/case.js': {
-        findByContactId: getCaseByIdStub,
-        createNew: creatNewCaseStub,
-        updateStatus: updateStatusStub
-      }
-      }
+          getToken: getTokenStub
+        }, '../controllers/salesforce/case.js': {
+          findByContactId: getCaseByIdStub,
+          createNew: creatNewCaseStub,
+          updateStatus: updateStatusStub
+        }
     });
 
     caseRoute(app);
@@ -113,6 +112,13 @@ describe('Case Routes', (done) => {
   it('Should pass a GET request through authentication middleware', (done) => {
     request.get('/cases').expect(200, (err, res) => {
       expect(getTokenStub.called).to.equal(true);
+      done();
+    });
+  });
+
+  it('Should pass a GET request to the findByContactId method on case controller', (done) => {
+    request.get('/cases').expect(200, (err, res) => {
+      expect(getCaseByIdStub.called).to.equal(true);
       done();
     });
   });
