@@ -69,4 +69,11 @@ describe('Contact Routes', (done) => {
     });
   });
 
+  it('Should respond with a JSON data', (done) => {
+    request.get('/contact').expect(200, (err, res) => {
+      expect(res.headers['content-type']).to.equal('application/json; charset=utf-8');
+      done();
+    });
+  });
+
 });
