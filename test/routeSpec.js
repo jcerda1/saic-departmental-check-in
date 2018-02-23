@@ -63,14 +63,14 @@ describe('Contact Routes', (done) => {
 
   it('Should pass A GET request through authentication middleware', (done) => {
     request.get('/contact').expect(200, (err, res) => {
-      expect(getTokenStub.called).to.equal(true);
+      expect(getTokenStub).to.have.been.called;
       done();
     });
   });
 
   it('Should pass A GET request to the contact controller', (done) => {
     request.get('/contact').expect(200, (err, res) => {
-      expect(getContactStub.called).to.equal(true);
+      expect(getContactStub).to.have.been.called;
       done();
     });
   });
@@ -114,13 +114,14 @@ describe('Case Routes', (done) => {
 
   it('Should pass a GET request through authentication middleware', (done) => {
     request.get('/cases').expect(200, (err, res) => {
-      expect(getTokenStub.called).to.equal(true);
+      expect(getTokenStub).to.have.been.called;
       done();
     });
   });
 
   it('Should pass a GET request to the findByContactId method on case controller', (done) => {
     request.get('/cases').expect(200, (err, res) => {
+      expect(getCaseByIdStub).to.have.been.called;
       done();
     });
   });
