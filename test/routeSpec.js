@@ -68,7 +68,7 @@ describe('Contact Routes', (done) => {
     });
   });
 
-  it('Should pass A GET request to the contact controller', (done) => {
+  it('Should pass A GET request to the findById method on contact controller', (done) => {
     request.get('/contact').expect(200, (err, res) => {
       expect(getContactStub).to.have.been.called;
       done();
