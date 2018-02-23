@@ -1,5 +1,5 @@
 exports.findById = (req, res) => {
-  res.json(`{
+  res.json({
     "totalSize": 1,
     "done": true,
     "records": [
@@ -14,5 +14,5 @@ exports.findById = (req, res) => {
             "Id": "003Q000001ASf1aIAD"
         }
       ]
-    }`);
+    });
 };
