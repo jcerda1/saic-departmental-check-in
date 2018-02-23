@@ -6,7 +6,7 @@ const chai = require('chai');
 const expect = chai.expect;
 const getToken = require('../server/controllers/salesforce/auth.js');
 const getTokenMock = require('../test/mocks/authMock.js');
-const { findById } = require('../test/mocks/contactMock.js');
+const controllerMock = require('../test/mocks/controllerMock.js');
 const fallbackRouter = require('../server/routes/fallbackRoutes.js');
 
 describe('Index and Fallback Routes', () => {
@@ -43,7 +43,7 @@ describe('Contact Routes', (done) => {
   beforeEach(() => {
     app = express();
     getTokenStub = sinon.spy(getTokenMock);
-    getContactStub = sinon.spy(findById);
+    getContactStub = sinon.spy(controllerMock);
 
     contactRoute = proxyquire('../server/routes/contactRoutes.js', {
       '../controllers/salesforce/auth.js': {
@@ -72,25 +72,9 @@ describe('Contact Routes', (done) => {
     });
   });
 
-  it('Should respond to A GET request with JSON User data', (done) => {
+  it('Should respond to A GET request with JSON data', (done) => {
     request.get('/contact').expect(200, (err, res) => {
       expect(res.headers['content-type']).to.equal('application/json; charset=utf-8');
-      expect(res.body).to.deep.equal({
-        "totalSize": 1,
-        "done": true,
-        "records": [
-          {
-            "attributes": {
-                "type": "Contact",
-                "url": "/services/data/v20.0/sobjects/Contact/003Q000001ASf1aIAD"
-            },
-            "Name": "Nicholas Havens",
-            "Email": "nhaven@saic.edu",
-            "EMPLIDPeoplesoftKey__c": "7000428",
-            "Id": "003Q000001ASf1aIAD"
-          }
-        ]
-      });
       done();
     });
   });
