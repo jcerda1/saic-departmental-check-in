@@ -12,4 +12,5 @@ module.exports = (app) => {
     res.set('Content-Encoding', 'gzip');
     next();
   });
+
 };

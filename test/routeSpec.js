@@ -7,29 +7,32 @@ const expect = chai.expect;
 const getToken = require('../server/controllers/salesforce/auth.js');
 const getTokenMock = require('../test/mocks/authMock.js');
 const { findById } = require('../test/mocks/contactMock.js');
-// describe('Index and Fallback Routes', () => {
-//   let request;
-//   let app;
+const fallbackRouter = require('../server/routes/fallbackRoutes.js');
 
-//   beforeEach(() => {
-//     app = express();
-//     request = supertest(app);
-//   });
+describe('Index and Fallback Routes', () => {
+  let request;
+  let app;
 
-//   it('Should get the index page', (done) => {
-//     request.get('/').expect(200, (err, res) => {
-//       expect(res.headers['content-type']).to.equal('text/html; charset=UTF-8');
-//       done();
-//     });
-//   });
+  beforeEach(() => {
+    app = express();
+    request = supertest(app);
+    fallbackRouter(app);
+  });
 
-  // it('Should fallback to the index page for undefined routes', (done) => {
-  //   request.get('/random').expect(200, (err, res) => {
-  //     expect(res.headers['content-type']).to.equal('text/html; charset=UTF-8');
-  //     done();
-  //   })
-  // });
-//});
+  it('Should get the index page', (done) => {
+    request.get('/').expect(200, (err, res) => {
+      expect(res.headers['content-type']).to.equal('text/html; charset=UTF-8');
+      done();
+    });
+  });
+
+  it('Should fallback to the index page for undefined routes', (done) => {
+    request.get('/random').expect(200, (err, res) => {
+      expect(res.headers['content-type']).to.equal('text/html; charset=UTF-8');
+      done();
+    })
+  });
+});
 
 describe('Contact Routes', (done) => {
   let request;

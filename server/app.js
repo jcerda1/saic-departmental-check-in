@@ -41,12 +41,4 @@ contactRouter(app);
 caseRouter(app);
 fallbackRouter(app);
 
-/* Compression to g-zip*/
-app.get('*.js', function (req, res, next) {
-  req.url = req.url + '.gz';
-  res.set('Content-Encoding', 'gzip');
-  next();
-});
-
-
 module.exports = app;
