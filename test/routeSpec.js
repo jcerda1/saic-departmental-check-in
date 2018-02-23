@@ -5,8 +5,8 @@ const supertest = require('supertest');
 const chai = require('chai');
 const expect = chai.expect;
 const getToken = require('../server/controllers/salesforce/auth.js');
-const getTokenMock = require('../test/mocks/authmock.js');
-
+const getTokenMock = require('../test/mocks/authMock.js');
+const { findById } = require('../test/mocks/contactMock.js');
 // describe('Index and Fallback Routes', () => {
 //   let request;
 //   let app;
@@ -40,14 +40,16 @@ describe('Contact Routes', (done) => {
   beforeEach(() => {
     app = express();
     getTokenSpy = sinon.spy(getTokenMock);
-    getContactStub = sinon.spy(sinon.stub());
+    getContactStub = sinon.spy(findById);
 
     contactRoute = proxyquire('../server/routes/contactRoutes.js', {
       '../controllers/salesforce/auth.js': {
         getToken: getTokenSpy,
+      },
+      '../controllers/salesforce/contact.js': {
         findById: getContactStub
       }
-    })
+    });
 
     contactRoute(app);
     request = supertest(app);
