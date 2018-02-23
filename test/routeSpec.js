@@ -83,16 +83,26 @@ describe('Contact Routes', (done) => {
 describe('Case Routes', (done) => {
   let request;
   let getTokenStub;
-  let findByIdStub;
   let caseRoute;
+  let getCaseByIdStub;
+  let creatNewCaseStub;
+  let updateStatusStub;
 
   beforeEach(() => {
     app = express();
     getTokenStub = sinon.spy(getTokenMock);
+    getCaseByIdStub = sinon.spy(controllerMock);
+    creatNewCaseStub = sinon.spy(controllerMock);
+    updateStatusStub = sinon.spy(controllerMock);
 
     caseRoute = proxyquire('../server/routes/caseRoutes.js', {
       '../controllers/salesforce/auth.js': {
         getToken: getTokenStub,
+        '../controllers/salesforce/case.js': {
+        findByContactId: getCaseByIdStub,
+        createNew: creatNewCaseStub,
+        updateStatus: updateStatusStub
+      }
       }
     });
 
