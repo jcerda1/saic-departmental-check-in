@@ -7,7 +7,6 @@ if (NODE_ENV !== 'production' && NODE_ENV !== 'test') {
 /*Initialize Express*/
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
 const port = PORT || 3000;
 
 const app = express();
@@ -36,13 +35,12 @@ if (NODE_ENV !== 'test') {
 * * * * * * * * * * * * * * * * * * * * * * * * * * */
 const contactRouter = require('./routes/contactRoutes.js');
 const caseRouter = require('./routes/caseRoutes.js');
+const fallbackRouter = require('./routes/fallbackRoutes.js');
 
 contactRouter(app);
 caseRouter(app);
+fallbackRouter(app);
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * *
-  Fallback Routes
-* * * * * * * * * * * * * * * * * * * * * * * * * * */
 /* Compression to g-zip*/
 app.get('*.js', function (req, res, next) {
   req.url = req.url + '.gz';
@@ -50,8 +48,5 @@ app.get('*.js', function (req, res, next) {
   next();
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../index.html'))
-});
 
 module.exports = app;
