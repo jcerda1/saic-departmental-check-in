@@ -23,18 +23,16 @@ describe('Index and Fallback Routes', () => {
   });
 
   it('Should get the index page', (done) => {
-    request.get('/').expect(200, (err, res) => {
-      expect(res.headers['content-type']).to.equal('text/html; charset=UTF-8');
-      done();
-    });
+    request.get('/')
+    .expect('Content-Type', /html/)
+    .expect(200, done);
   });
 
   it('Should fallback to the index page for undefined routes', (done) => {
-    request.get('/random').expect(200, (err, res) => {
-      expect(res.headers['content-type']).to.equal('text/html; charset=UTF-8');
-      done();
-    })
-  });
+    request.get('/random')
+    .expect('Content-Type', /html/)
+    .expect(200, done);
+  })
 });
 
 describe('Contact Routes', (done) => {
