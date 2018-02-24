@@ -76,10 +76,9 @@ describe('Contact Routes', (done) => {
   });
 
   it('Should respond to A GET request with JSON data', (done) => {
-    request.get('/contact').expect(200, (err, res) => {
-      expect(res.headers['content-type']).to.equal('application/json; charset=utf-8');
-      done();
-    });
+    request.get('/contact')
+    .expect('Content-Type', /json/)
+    .expect(200, done);
   });
 });
 
@@ -127,10 +126,9 @@ describe('Case Routes', (done) => {
   });
 
   it('Should respond to A GET request with JSON data', (done) => {
-    request.get('/cases').expect(200, (err, res) => {
-      expect(res.headers['content-type']).to.equal('application/json; charset=utf-8');
-      done();
-    });
+    request.get('/cases')
+    .expect('Content-Type', /json/)
+    .expect(200, done);
   });
 
   it('Should pass a POST request through authentication middleware', (done) => {
