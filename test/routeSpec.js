@@ -61,7 +61,7 @@ describe('Contact Routes', (done) => {
     request = supertest(app);
   });
 
-  it('Should pass A GET request through authentication middleware', (done) => {
+  it('Should pass A GET request through auth middleware', (done) => {
     request.get('/contact').expect(200, (err, res) => {
       expect(getTokenStub).to.have.been.called;
       done();
@@ -111,7 +111,7 @@ describe('Case Routes', (done) => {
     request = supertest(app);
   });
 
-  it('Should pass a GET request through authentication middleware', (done) => {
+  it('Should pass a GET request through auth middleware', (done) => {
     request.get('/cases').expect(200, (err, res) => {
       expect(getTokenStub).to.have.been.called;
       done();
@@ -131,9 +131,16 @@ describe('Case Routes', (done) => {
     .expect(200, done);
   });
 
-  it('Should pass a POST request through authentication middleware', (done) => {
+  it('Should pass a POST request through auth middleware', (done) => {
     request.post('/cases').expect(200, (err, res) => {
       expect(getTokenStub).to.have.been.called;
+      done();
+    });
+  });
+
+  it('Should pass a POST request to the createNew method on case controller', (done) => {
+    request.post('/cases').expect(200, (err, res) => {
+      expect(creatNewCaseStub).to.have.been.called;
       done();
     });
   });
@@ -145,12 +152,20 @@ describe('Case Routes', (done) => {
     .expect(200, done);
   });
 
-  it('Should pass a PUT request through authentication middleware', (done) => {
+  it('Should pass a PUT request through auth middleware', (done) => {
     request.put('/cases').expect(200, (err, res) => {
       expect(getTokenStub).to.have.been.called;
       done();
     });
   });
+
+  it('Should pass a PUT request to the createNew method on case controller', (done) => {
+    request.put('/cases').expect(200, (err, res) => {
+      expect(creatNewCaseStub).to.have.been.called;
+      done();
+    });
+  });
+
 
   it('Should respond to A PUT request with JSON data', (done) => {
     request.put('/cases')
