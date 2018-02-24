@@ -14,8 +14,12 @@ describe('Saleforce Auth Controller Tests', (url, body, params) => {
   let axiosPostStub;
   let getToken;
   let nextSpy;
+  let mockRequest;
+  let mockResponse;
 
   beforeEach(() => {
+    mockRequest = {};
+    mockResponse = {send: sinon.spy()};
     axiosPostSpy = sinon.spy();
     nextSpy = sinon.spy();
     getToken = proxyquire('../../server/controllers/salesforce/auth.js', {
