@@ -144,4 +144,18 @@ describe('Case Routes', (done) => {
     .expect('Content-Type', /json/)
     .expect(200, done);
   });
+
+  it('Should pass a PUT request through authentication middleware', (done) => {
+    request.put('/cases').expect(200, (err, res) => {
+      expect(getTokenStub).to.have.been.called;
+      done();
+    });
+  });
+
+  it('Should respond to A PUT request with JSON data', (done) => {
+    request.put('/cases')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(200, done);
+  });
 });
