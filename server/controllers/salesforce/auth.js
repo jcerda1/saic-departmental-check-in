@@ -11,8 +11,8 @@ exports.getToken = (req, res, next) => {
       password: PASSWORD + API_USER_TOKEN
     }
   })
-  .then((data) => {
-    req.access_token = data.data.access_token;
+  .then((res) => {
+    req.access_token = res.data.access_token;
     next();
   })
   .catch(err => {
