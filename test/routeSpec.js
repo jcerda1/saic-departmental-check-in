@@ -61,21 +61,21 @@ describe('Contact Routes', (done) => {
     request = supertest(app);
   });
 
-  it('Should pass A GET request through auth middleware', (done) => {
+  it('Should pass a GET request through auth middleware', (done) => {
     request.get('/contact').expect(200, (err, res) => {
       expect(getTokenStub).to.have.been.called;
       done();
     });
   });
 
-  it('Should pass A GET request to the findById method on contact controller', (done) => {
+  it('Should pass a GET request to the findById method on contact controller', (done) => {
     request.get('/contact').expect(200, (err, res) => {
       expect(getContactStub).to.have.been.called;
       done();
     });
   });
 
-  it('Should respond to A GET request with JSON data', (done) => {
+  it('Should respond to a GET request with JSON data', (done) => {
     request.get('/contact')
     .expect('Content-Type', /json/)
     .expect(200, done);
@@ -88,14 +88,14 @@ describe('Case Routes', (done) => {
   let caseRoute;
   let getCaseByIdStub;
   let creatNewCaseStub;
-  let updateStatusStub;
+  let updateCaseStub;
 
   beforeEach(() => {
     app = express();
     getTokenStub = sinon.spy(getTokenMock);
     getCaseByIdStub = sinon.spy(controllerMock);
     creatNewCaseStub = sinon.spy(controllerMock);
-    updateStatusStub = sinon.spy(controllerMock);
+    updateCaseStub = sinon.spy(controllerMock);
 
     caseRoute = proxyquire('../server/routes/caseRoutes.js', {
       '../controllers/salesforce/auth.js': {
@@ -103,7 +103,7 @@ describe('Case Routes', (done) => {
         }, '../controllers/salesforce/case.js': {
           findByContactId: getCaseByIdStub,
           createNew: creatNewCaseStub,
-          updateStatus: updateStatusStub
+          updateStatus: updateCaseStub
         }
     });
 
@@ -125,7 +125,7 @@ describe('Case Routes', (done) => {
     });
   });
 
-  it('Should respond to A GET request with JSON data', (done) => {
+  it('Should respond to a GET request with JSON data', (done) => {
     request.get('/cases')
     .expect('Content-Type', /json/)
     .expect(200, done);
@@ -159,9 +159,9 @@ describe('Case Routes', (done) => {
     });
   });
 
-  it('Should pass a PUT request to the createNew method on case controller', (done) => {
+  it('Should pass a PUT request to the updateStatus method on case controller', (done) => {
     request.put('/cases').expect(200, (err, res) => {
-      expect(creatNewCaseStub).to.have.been.called;
+      expect(updateCaseStub).to.have.been.called;
       done();
     });
   });
