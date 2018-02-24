@@ -18,7 +18,4 @@ exports.getToken = (req, res, next) => {
   .catch(err => {
     res.send(err.response.data);
   });
-
-}
-
-
+};
