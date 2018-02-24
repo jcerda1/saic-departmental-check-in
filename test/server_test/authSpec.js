@@ -22,7 +22,6 @@ describe('Saleforce Auth Controller Tests', (url, body, params) => {
     mockResponse = {send: sinon.spy()};
     axiosPostStub = (url, body, params) => {
           return new Promise((resolve, reject) => {
-            console.log('CALLING STUB')
             resolve({data: {access_token: 'TEST'}});
           });
         }
@@ -38,13 +37,20 @@ describe('Saleforce Auth Controller Tests', (url, body, params) => {
   });
 
   it('Should make a POST request with axios to the Salesforce auth server', (done) => {
-    getToken(mockRequest, mockResponse, nextSpy)
+    getToken(mockRequest, mockResponse, nextSpy);
     expect(axiosPostSpy).to.have.been.calledWith(`https://test.salesforce.com/services/oauth2/token`);
     done();
   });
 
-  it(`Should have a grant_type of 'password'`, (done) => {
-    getToken(mockRequest, mockResponse, nextSpy)
+   it('Should contain all Salesforce auth params', (done) => {
+    getToken(mockRequest, mockResponse, nextSpy);
+    const params = axiosPostSpy.args[0][2].params;
+    expect(params).to.have.keys('grant_type', 'client_id', 'client_secret', 'username', 'password');
+    done()
+  });
+
+   it(`Should have a grant_type of 'password'`, (done) => {
+    getToken(mockRequest, mockResponse, nextSpy);
     const params = axiosPostSpy.args[0][2].params;
     expect(params.grant_type).to.equal('password');
     done()
