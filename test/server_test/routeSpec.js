@@ -5,10 +5,9 @@ const supertest = require('supertest');
 const chai = require('chai');
 const sinonChai = require('sinon-chai');
 const expect = chai.expect;
-const getToken = require('../server/controllers/salesforce/auth.js');
-const getTokenMock = require('../test/mocks/authMock.js');
-const controllerMock = require('../test/mocks/controllerMock.js');
-const fallbackRouter = require('../server/routes/fallbackRoutes.js');
+const getTokenMock = require('./mocks/authMock.js');
+const controllerMock = require('./mocks/controllerMock.js');
+const fallbackRouter = require('../../server/routes/fallbackRoutes.js');
 
 chai.use(sinonChai);
 
@@ -47,7 +46,7 @@ describe('Route Tests', () => {
       getTokenStub = sinon.spy(getTokenMock);
       getContactStub = sinon.spy(controllerMock);
 
-      contactRoute = proxyquire('../server/routes/contactRoutes.js', {
+      contactRoute = proxyquire('../../server/routes/contactRoutes.js', {
         '../controllers/salesforce/auth.js': {
           getToken: getTokenStub
         },
@@ -96,7 +95,7 @@ describe('Route Tests', () => {
       creatNewCaseStub = sinon.spy(controllerMock);
       updateCaseStub = sinon.spy(controllerMock);
 
-      caseRoute = proxyquire('../server/routes/caseRoutes.js', {
+      caseRoute = proxyquire('../../server/routes/caseRoutes.js', {
         '../controllers/salesforce/auth.js': {
             getToken: getTokenStub
           }, '../controllers/salesforce/case.js': {
