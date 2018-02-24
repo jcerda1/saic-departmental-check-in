@@ -133,4 +133,17 @@ describe('Case Routes', (done) => {
     });
   });
 
+  it('Should pass a POST request through authentication middleware', (done) => {
+    request.post('/cases').expect(200, (err, res) => {
+      expect(getTokenStub).to.have.been.called;
+      done();
+    });
+  });
+
+  it('Should respond to A POST request with JSON data', (done) => {
+    request.post('/cases')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(200, done);
+  });
 });
