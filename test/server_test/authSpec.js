@@ -72,10 +72,13 @@ describe('Saleforce Auth Controller Tests', () => {
     });
 
     it(`Should have a grant_type of 'password'`, (done) => {
-      getToken(mockRequest, mockResponse, nextSpy);
-      const params = axiosPostSpy.args[0][2].params;
-      expect(params.grant_type).to.equal('password');
-      done()
+      testMiddleWare(getToken, done)
+      .then((req, res) => {
+        const params = axiosPostSpy.args[0][2].params;
+        expect(axiosPostSpy).to.have.been.calledWith(url);
+        expect(params.grant_type).to.equal('password');
+        done();
+      });
     });
 
     it(`Should attach token to next request`, (done) => {
