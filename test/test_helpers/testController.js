@@ -4,15 +4,17 @@ const supertest = require('supertest');
 const request = supertest(app);
 
 module.exports = (controller, done, cb) => {
-   app.get('/test', controller);
+   app.get('/test', controller, (req, res) => {
+    res.send('TEST');
+  });
 
   request.get('/test').end((err, res) => {
-    done();
     if (err) {
+      console.log('test error')
       cb(err);
     } else {
-      cb(res);
+      console.log('SUCCESS', res.body)
+      cb(null, res);
     }
-
   });
 }
