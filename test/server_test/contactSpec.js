@@ -86,7 +86,6 @@ describe('Contact Controller Tests', () => {
           get: axiosGETErrStub
         }
       }).findById;
-      findById = require('../../server/controllers/salesforce/contact.js').findById;
 
       app = express();
       request = supertest(app);
@@ -95,7 +94,14 @@ describe('Contact Controller Tests', () => {
     });
 
     it('Should respond with an error if no ID parameter is present on request', (done) => {
-        request.get('/test').expect(401, done);
+      request.get('/test').expect(401, done);
+    });
+
+    it('Should send the error data if axios GET request fails', (done) => {
+      request.get('/test').query({ id: 0000000}).end((err, res) => {
+         expect(res.text).to.equal('TEST ERROR');
+         done()
       });
+    });
   })
 });
