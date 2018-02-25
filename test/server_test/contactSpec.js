@@ -23,22 +23,7 @@ describe('Contact Controller Tests', () => {
     beforeEach(() => {
       axiosGETStub = (url, body, params) => {
         return new Promise((resolve, reject) => {
-          resolve({
-              "totalSize": 1,
-              "done": true,
-              "records": [
-                  {
-                      "attributes": {
-                          "type": "Contact",
-                          "url": "/services/data/v20.0/sobjects/Contact/003Q000001ASf1aIAD"
-                      },
-                      "Name": "Nicholas Havens",
-                      "Email": "nhaven@saic.edu",
-                      "EMPLIDPeoplesoftKey__c": "7000428",
-                      "Id": "003Q000001ASf1aIAD"
-                  }
-              ]
-          });
+          resolve({ data: 'TEST CONTACT DATA'});
         });
       }
 
@@ -55,6 +40,23 @@ describe('Contact Controller Tests', () => {
 
       app.get('/test', findById);
     });
+
+    it('Should make an axios GET request', (done) => {
+      request.get('/test').query({ id: 0000000}).end((err, res) => {
+        expect(axiosGETSpy).to.have.been.called;
+        done();
+      });
+    })
+
+    it('Should send the contact data in the response', (done) => {
+      request.get('/test').query({ id: 0000000}).end((err, res) => {
+        const expectedResponse = 'TEST CONTACT DATA';
+        const actualResponse = res.text;
+        expect(actualResponse).to.equal(expectedResponse);
+        done();
+      });
+    })
+
 
   })
 
