@@ -18,6 +18,7 @@ describe('Saleforce Auth Controller Tests', (url, body, params) => {
   let mockRequest;
   let mockResponse;
   let testMiddleWare;
+  let axiosPostErrStub;
 
   beforeEach(() => {
     mockRequest = {};
@@ -40,6 +41,12 @@ describe('Saleforce Auth Controller Tests', (url, body, params) => {
     axiosPostStub = (url, body, params) => {
           return new Promise((resolve, reject) => {
             resolve({data: {access_token: '00DQ000000GKkqu!AQsAQAxMs'}});
+          });
+        }
+
+    axiosPostErrStub = (url, body, params) => {
+          return new Promise((resolve, reject) => {
+            reject({response: {data: 'TEST ERROR'}});
           });
         }
 
@@ -75,6 +82,14 @@ describe('Saleforce Auth Controller Tests', (url, body, params) => {
   });
 
   it(`Should attach token to next request`, (done) => {
+    getToken(mockRequest, mockResponse, nextSpy);
+    testMiddleWare(getToken, (req, res) => {
+      expect(req.access_token).to.equal('00DQ000000GKkqu!AQsAQAxMs');
+      done();
+    })
+  });
+
+  it(`Should send error data`, (done) => {
     getToken(mockRequest, mockResponse, nextSpy);
     testMiddleWare(getToken, (req, res) => {
       expect(req.access_token).to.equal('00DQ000000GKkqu!AQsAQAxMs');
