@@ -68,7 +68,8 @@ describe('Saleforce Auth Controller Tests', () => {
 
     it(`Should attach token to next request`, (done) => {
       getToken(mockRequest, mockResponse, nextSpy);
-      testMiddleWare(getToken, (req, res) => {
+      testMiddleWare(getToken)
+      .then((req, res) => {
         expect(req.access_token).to.equal('00DQ000000GKkqu!AQsAQAxMs');
         done();
       })
