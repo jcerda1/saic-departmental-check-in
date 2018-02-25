@@ -13,6 +13,7 @@ chai.use(sinonChai);
 
 describe('Route Tests', () => {
   describe('Index and Fallback Routes', () => {
+    const testMiddleWare = require('../test_helpers/testMiddleWare.js');
     let request;
     let app;
 
@@ -33,18 +34,6 @@ describe('Route Tests', () => {
       .expect('Content-Type', /html/)
       .expect(200, done);
     })
-
-
-    // it('Should respond with gzipped js files', (done) => {
-    //   request.get('/webpack.dev.js')
-    //   .expect(200, (err, res) => {
-    //     if (err) {
-    //       console.log(err)
-    //     }
-    //     console.log(res)
-    //   })
-    //   //.expect(200, done);
-    // })
   });
 
   describe('Contact Routes', (done) => {
