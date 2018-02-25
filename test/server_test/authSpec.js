@@ -110,18 +110,23 @@ describe('Saleforce Auth Controller Tests', () => {
 
 
     it(`Should send error data`, (done) => {
+      testController(getToken)
+      .then(res => {
+        expect(res.text).to.equal('TEST ERROR');
+        done();
+      });
       //testMiddleWare(getToken, done, (req, res) => {
         //expect(res.send).to.have.been.called({response: {data: 'TEST ERROR'}})
-      testController(getToken, (err, res) => {
-       // if (err) {
-          expect(res.text).to.equal('TEST ERROR');
-          done();
-        //} else {
+      // testController(getToken, (err, res) => {
+      //  // if (err) {
+      //     expect(res.text).to.equal('TEST ERROR');
+      //     done();
+      //   //} else {
 
-        //}
+      //   //}
 
-        //expect(res).to.equal({response: {data: 'TEST ERROR'}});
-      });
+      //   //expect(res).to.equal({response: {data: 'TEST ERROR'}});
+      // });
     });
   })
 
