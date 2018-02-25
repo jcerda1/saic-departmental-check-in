@@ -35,16 +35,16 @@ describe('Route Tests', () => {
     })
 
 
-    it('Should respond with gzipped js files', (done) => {
-      request.get('/webpack.dev.js')
-      .expect(200, (err, res) => {
-        if (err) {
-          console.log(err)
-        }
-        console.log(res)
-      })
-      //.expect(200, done);
-    })
+    // it('Should respond with gzipped js files', (done) => {
+    //   request.get('/webpack.dev.js')
+    //   .expect(200, (err, res) => {
+    //     if (err) {
+    //       console.log(err)
+    //     }
+    //     console.log(res)
+    //   })
+    //   //.expect(200, done);
+    // })
   });
 
   describe('Contact Routes', (done) => {

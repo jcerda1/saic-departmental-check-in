@@ -13,32 +13,18 @@ chai.use(sinonChai);
 describe('Saleforce Auth Controller Tests', () => {
 
   describe('Success Tests', () => {
+    const testMiddleWare = require('../test_helpers/testMiddleWare.js');
     let axiosPostStub;
     let getToken;
     let nextStub;
     let nextSpy;
     let mockRequest;
     let mockResponse;
-    let testMiddleWare;
     let axiosPostErrStub;
 
     beforeEach(() => {
       mockRequest = {};
       mockResponse = {send: sinon.spy()};
-
-      testMiddleWare = (middleware, done, cb) => {
-        const app = express();
-        const request = supertest(app);
-
-        app.get('/test', middleware, (req, res) => {
-          cb(req, res);
-          res.send('TEST');
-        });
-
-        request.get('/test').expect(200, (err, res) => {
-          done();
-        });
-      };
 
       axiosPostStub = (url, body, params) => {
             return new Promise((resolve, reject) => {
@@ -92,32 +78,18 @@ describe('Saleforce Auth Controller Tests', () => {
   })
 
   describe('Failure Tests', () => {
+    const testMiddleWare = require('../test_helpers/testMiddleWare.js');
     let axiosPostStub;
     let getToken;
     let nextStub;
     let nextSpy;
     let mockRequest;
     let mockResponse;
-    let testMiddleWare;
     let axiosPostErrStub;
 
     beforeEach(() => {
       mockRequest = {};
       mockResponse = {send: sinon.spy()};
-
-      testMiddleWare = (middleware, done, cb) => {
-        const app = express();
-        const request = supertest(app);
-
-        app.get('/test', middleware, (req, res) => {
-          cb(req, res);
-          res.send('TEST');
-        });
-
-        request.get('/test').end((err, res) => {
-          done()
-        });
-      };
 
       axiosPostErrStub = (url, body, params) => {
             return new Promise((resolve, reject) => {
@@ -140,7 +112,6 @@ describe('Saleforce Auth Controller Tests', () => {
     it(`Should send error data`, (done) => {
       getToken(mockRequest, mockResponse, nextSpy);
       testMiddleWare(getToken, done, (req, res) => {
-        //expect(req.access_token).to.equal('00DQ000000GKkqu!AQsAQAxMs');
         expect(res.send).to.have.been.called({response: {data: 'TEST ERROR'}})
       })
     });
