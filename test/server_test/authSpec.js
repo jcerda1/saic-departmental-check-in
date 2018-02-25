@@ -93,7 +93,7 @@ describe('Saleforce Auth Controller Tests', () => {
       axiosPostErrStub = (url, body, params) => {
             return new Promise((resolve, reject) => {
               console.log('Sending Error')
-              reject({response: {data: 'TEST'}});
+              reject({response: {data: 'TEST ERROR'}});
             });
           }
 
@@ -112,12 +112,13 @@ describe('Saleforce Auth Controller Tests', () => {
     it(`Should send error data`, (done) => {
       //testMiddleWare(getToken, done, (req, res) => {
         //expect(res.send).to.have.been.called({response: {data: 'TEST ERROR'}})
-      testController(getToken, done, (err, res) => {
-        if (err) {
-          console.log('ERORR')
-        } else {
-          console.log('SUCCESS')
-        }
+      testController(getToken, (err, res) => {
+       // if (err) {
+          expect(res.text).to.equal('TEST ERROR');
+          done();
+        //} else {
+
+        //}
 
         //expect(res).to.equal({response: {data: 'TEST ERROR'}});
       });
