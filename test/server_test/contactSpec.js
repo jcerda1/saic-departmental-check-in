@@ -69,11 +69,23 @@ describe('Contact Controller Tests', () => {
   })
 
   describe('findByID Failure Tests', () => {
+    let axiosGETErrStub;
     let findById;
     let request;
     let app
 
     beforeEach(() => {
+      axiosGETErrStub = (url, body, params) => {
+        return new Promise((resolve, reject) => {
+          reject({response: {data: 'TEST ERROR'}});
+        });
+      }
+
+      findById = proxyquire('../../server/controllers/salesforce/contact.js', {
+        axios: {
+          get: axiosGETErrStub
+        }
+      }).findById;
       findById = require('../../server/controllers/salesforce/contact.js').findById;
 
       app = express();
