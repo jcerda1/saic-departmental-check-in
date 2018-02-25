@@ -47,9 +47,12 @@ describe('Saleforce Auth Controller Tests', () => {
     });
 
     it('Should make a POST request with axios to the Salesforce auth server', (done) => {
-      getToken(mockRequest, mockResponse, nextSpy);
-      expect(axiosPostSpy).to.have.been.calledWith(`https://test.salesforce.com/services/oauth2/token`);
-      done();
+      // getToken(mockRequest, mockResponse);
+      // expect(axiosPostSpy).to.have.been.calledWith(`https://test.salesforce.com/services/oauth2/token`);
+      testMiddleWare(getToken, done)
+      .then((req, res) => {
+         expect(axiosPostSpy).to.have.been.calledWith(`https://test.salesforce.com/services/oauth2/token`)
+      });
     });
 
     it('Should contain all Salesforce auth params', (done) => {
@@ -68,7 +71,7 @@ describe('Saleforce Auth Controller Tests', () => {
 
     it(`Should attach token to next request`, (done) => {
       getToken(mockRequest, mockResponse, nextSpy);
-      testMiddleWare(getToken)
+      testMiddleWare(getToken, done)
       .then((req, res) => {
         expect(req.access_token).to.equal('00DQ000000GKkqu!AQsAQAxMs');
         done();
@@ -115,18 +118,6 @@ describe('Saleforce Auth Controller Tests', () => {
         expect(res.text).to.equal('TEST ERROR');
         done();
       });
-      //testMiddleWare(getToken, done, (req, res) => {
-        //expect(res.send).to.have.been.called({response: {data: 'TEST ERROR'}})
-      // testController(getToken, (err, res) => {
-      //  // if (err) {
-      //     expect(res.text).to.equal('TEST ERROR');
-      //     done();
-      //   //} else {
-
-      //   //}
-
-      //   //expect(res).to.equal({response: {data: 'TEST ERROR'}});
-      // });
     });
   })
 

@@ -4,7 +4,7 @@ const supertest = require('supertest');
 const request = supertest(app);
 const Promise = require('bluebird');
 
-module.exports = (middleware) => {
+module.exports = (middleware, done) => {
   return new Promise((resolve, reject) => {
     app.get('/test', middleware, (req, res) => {
     resolve(req, res);
@@ -12,7 +12,7 @@ module.exports = (middleware) => {
     });
 
     request.get('/test').end((err, res) => {
-      res.end();
+      done();
     });
   });
 }
