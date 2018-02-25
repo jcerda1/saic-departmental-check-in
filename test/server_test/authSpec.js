@@ -68,14 +68,14 @@ describe('Saleforce Auth Controller Tests', () => {
 
     it(`Should attach token to next request`, (done) => {
       getToken(mockRequest, mockResponse, nextSpy);
-      testMiddleWare(getToken, done, (req, res) => {
+      testMiddleWare(getToken, (req, res) => {
         expect(req.access_token).to.equal('00DQ000000GKkqu!AQsAQAxMs');
+        done();
       })
     });
   })
 
   describe('Failure Tests', () => {
-    const testMiddleWare = require('../test_helpers/testMiddleWare.js');
     let axiosPostStub;
     let axiosPostSpy;
     let getToken;
@@ -92,7 +92,6 @@ describe('Saleforce Auth Controller Tests', () => {
 
       axiosPostErrStub = (url, body, params) => {
             return new Promise((resolve, reject) => {
-              console.log('Sending Error')
               reject({response: {data: 'TEST ERROR'}});
             });
           }
