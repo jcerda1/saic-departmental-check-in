@@ -7,6 +7,7 @@ const sinonChai = require('sinon-chai');
 const proxyquire = require('proxyquire');
 const Promise = require('bluebird');
 const expect = chai.expect;
+const testController = require('./test_helpers/testController.js');
 
 chai.use(sinonChai);
 
@@ -26,21 +27,21 @@ describe('Contact Controller Tests', () => {
     axiosGETStub = (url, body, params) => {
             return new Promise((resolve, reject) => {
               resolve({
-    "totalSize": 1,
-    "done": true,
-    "records": [
-        {
-            "attributes": {
-                "type": "Contact",
-                "url": "/services/data/v20.0/sobjects/Contact/003Q000001ASf1aIAD"
-            },
-            "Name": "Nicholas Havens",
-            "Email": "nhaven@saic.edu",
-            "EMPLIDPeoplesoftKey__c": "7000428",
-            "Id": "003Q000001ASf1aIAD"
-        }
-    ]
-});
+                  "totalSize": 1,
+                  "done": true,
+                  "records": [
+                      {
+                          "attributes": {
+                              "type": "Contact",
+                              "url": "/services/data/v20.0/sobjects/Contact/003Q000001ASf1aIAD"
+                          },
+                          "Name": "Nicholas Havens",
+                          "Email": "nhaven@saic.edu",
+                          "EMPLIDPeoplesoftKey__c": "7000428",
+                          "Id": "003Q000001ASf1aIAD"
+                      }
+                  ]
+              });
             });
           }
 
