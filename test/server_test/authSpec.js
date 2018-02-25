@@ -32,12 +32,6 @@ describe('Saleforce Auth Controller Tests', () => {
             });
           }
 
-      axiosPostErrStub = (url, body, params) => {
-            return new Promise((resolve, reject) => {
-              reject({response: {data: 'TEST ERROR'}});
-            });
-          }
-
       axiosPostSpy = sinon.spy(axiosPostStub);
 
       nextSpy = sinon.spy();
@@ -110,7 +104,6 @@ describe('Saleforce Auth Controller Tests', () => {
 
 
     it(`Should send error data`, (done) => {
-      getToken(mockRequest, mockResponse, nextSpy);
       testMiddleWare(getToken, done, (req, res) => {
         expect(res.send).to.have.been.called({response: {data: 'TEST ERROR'}})
       })
