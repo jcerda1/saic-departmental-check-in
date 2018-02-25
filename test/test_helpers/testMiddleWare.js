@@ -9,7 +9,7 @@ module.exports = (middleware, done, cb) => {
     res.send('TEST');
   });
 
-  request.get('/test').expect(200, (err, res) => {
+  request.get('/test').end((err, res) => {
     done();
   });
 }
