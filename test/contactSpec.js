@@ -14,12 +14,11 @@ chai.use(sinonChai);
 describe('Contact Controller Tests', () => {
   decribe('findByID Success Tests', () => {
     let axiosGETStub;
-    let getToken;
+    let axiosGETStub;
     let nextStub;
     let nextSpy;
     let mockRequest;
     let mockResponse;
-    let axiosGETErrStub;
 
     mockRequest = {};
     mockResponse = {send: sinon.spy()};
@@ -45,10 +44,10 @@ describe('Contact Controller Tests', () => {
             });
           }
 
-      axiosPostSpy = sinon.spy(axiosPostStub);
+      axiosGETSpy = sinon.spy(axiosGETStub);
   })
 
   decribe('findByID Failure Tests', () => {
-
+    it('')
   })
 });
