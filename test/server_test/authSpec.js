@@ -24,21 +24,16 @@ describe('Saleforce Auth Controller Tests', (url, body, params) => {
     mockResponse = {send: sinon.spy()};
 
 
-    testMiddleWare = (middleware, done) => {
-      return new Promise((resolve, reject) => {
-        const app = express();
-        const request = supertest(app);
+    testMiddleWare = (middleware, cb) => {
+      const app = express();
+      const request = supertest(app);
 
-        app.get('/test', middleware, (req, res) => {
-          resolve(req, res);
-        });
+      app.get('/test', middleware, (req, res) => {
+        cb(req, res);
+        res.send('TEST');
+      });
 
-        request.get('/test').expect(200, (err, res) => {
-          if (err) {
-            reject(err);
-          }
-          done();
-        });
+      request.get('/test').expect(200, (err, res) => {
       });
     };
 
@@ -79,10 +74,12 @@ describe('Saleforce Auth Controller Tests', (url, body, params) => {
     done()
   });
 
-  it(`Should send error data`, (done) => {
+  it(`Should attach token to next request`, (done) => {
     getToken(mockRequest, mockResponse, nextSpy);
-    testMiddleWare(getToken, done)
-    //expect(mockResponse.send).to.have.been.called;
+    testMiddleWare(getToken, (req, res) => {
+      expect(req.access_token).to.equal('00DQ000000GKkqu!AQsAQAxMs');
+      done();
+    })
   });
 
 
