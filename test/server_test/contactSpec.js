@@ -48,6 +48,14 @@ describe('Contact Controller Tests', () => {
       });
     })
 
+    it('Should add an authorization header to the axios GET request', (done) => {
+      request.get('/test').query({ id: 0000000}).end((err, res) => {
+        const headers = axiosGETSpy.args[0][1].headers;
+        expect(headers).to.have.keys('Authorization');
+        done();
+      });
+    })
+
     it('Should send the contact data in the response', (done) => {
       request.get('/test').query({ id: 0000000}).end((err, res) => {
         const expectedResponse = 'TEST CONTACT DATA';
