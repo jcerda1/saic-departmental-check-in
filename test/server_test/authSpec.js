@@ -103,7 +103,7 @@ describe('Saleforce Auth Controller Tests', () => {
     });
 
 
-    it(`Should send error data`, (done) => {
+    it(`Should send error data if axios authorization request fails`, (done) => {
       testController(getToken)
       .then(res => {
         expect(res.text).to.equal('TEST ERROR');

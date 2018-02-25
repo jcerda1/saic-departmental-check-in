@@ -14,24 +14,24 @@ chai.use(sinonChai);
 describe('Contact Controller Tests', () => {
 
   describe('findByID Success Tests', () => {
-    let axiosGETStub;
-    let axiosGETSpy;
+    let axiosGetStub;
+    let axiosGetSpy;
     let findById;
     let request;
     let app;
 
     beforeEach(() => {
-      axiosGETStub = (url, body, params) => {
+      axiosGetStub = (url, body, params) => {
         return new Promise((resolve, reject) => {
           resolve({ data: 'TEST CONTACT DATA'});
         });
       }
 
-      axiosGETSpy = sinon.spy(axiosGETStub);
+      axiosGetSpy = sinon.spy(axiosGetStub);
 
       findById = proxyquire('../../server/controllers/salesforce/contact.js', {
         axios: {
-          get: axiosGETSpy
+          get: axiosGetSpy
         }
       }).findById;
 
@@ -43,14 +43,14 @@ describe('Contact Controller Tests', () => {
 
     it('Should make an axios GET request', (done) => {
       request.get('/test').query({ id: 0000000}).end((err, res) => {
-        expect(axiosGETSpy).to.have.been.called;
+        expect(axiosGetSpy).to.have.been.called;
         done();
       });
-    })
+    });
 
     it('Should add an authorization header to the axios GET request', (done) => {
       request.get('/test').query({ id: 0000000}).expect(200, (err, res) => {
-        const headers = axiosGETSpy.args[0][1].headers;
+        const headers = axiosGetSpy.args[0][1].headers;
         expect(headers).to.have.keys('Authorization');
         done();
       });
@@ -69,13 +69,13 @@ describe('Contact Controller Tests', () => {
   })
 
   describe('findByID Failure Tests', () => {
-    let axiosGETErrStub;
+    let axiosGetErrStub;
     let findById;
     let request;
     let app
 
     beforeEach(() => {
-      axiosGETErrStub = (url, body, params) => {
+      axiosGetErrStub = (url, body, params) => {
         return new Promise((resolve, reject) => {
           reject({response: {data: 'TEST ERROR'}});
         });
@@ -83,7 +83,7 @@ describe('Contact Controller Tests', () => {
 
       findById = proxyquire('../../server/controllers/salesforce/contact.js', {
         axios: {
-          get: axiosGETErrStub
+          get: axiosGetErrStub
         }
       }).findById;
 
@@ -100,7 +100,7 @@ describe('Contact Controller Tests', () => {
     it('Should send the error data if axios GET request fails', (done) => {
       request.get('/test').query({ id: 0000000}).end((err, res) => {
          expect(res.text).to.equal('TEST ERROR');
-         done()
+         done();
       });
     });
   })
