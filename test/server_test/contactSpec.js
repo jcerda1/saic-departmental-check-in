@@ -100,7 +100,7 @@ describe('Contact Controller Tests', () => {
     it('Should send the error data if axios GET request fails', (done) => {
       request.get('/test').query({ id: 0000000}).end((err, res) => {
          expect(res.text).to.equal('TEST ERROR');
-         done()
+         done();
       });
     });
   })
