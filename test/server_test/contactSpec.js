@@ -7,21 +7,16 @@ const sinonChai = require('sinon-chai');
 const proxyquire = require('proxyquire');
 const Promise = require('bluebird');
 const expect = chai.expect;
-const testController = require('./test_helpers/testController.js');
+const testController = require('../test_helpers/testController.js');
 
 chai.use(sinonChai);
 
 describe('Contact Controller Tests', () => {
-  decribe('findByID Success Tests', () => {
-    let axiosGETStub;
-    let axiosGETStub;
-    let nextStub;
-    let nextSpy;
-    let mockRequest;
-    let mockResponse;
 
-    mockRequest = {};
-    mockResponse = {send: sinon.spy()};
+  describe('findByID Success Tests', () => {
+    let axiosGETStub;
+    let axiosGETSpy;
+    let findById;
 
     axiosGETStub = (url, body, params) => {
             return new Promise((resolve, reject) => {
@@ -45,9 +40,19 @@ describe('Contact Controller Tests', () => {
           }
 
       axiosGETSpy = sinon.spy(axiosGETStub);
+
+      findById = proxyquire('../../server/controllers/salesforce/contact.js', {
+        axios: {
+          get: axiosGETSpy
+        }
+      }).findById;
+
+      it('makes an axios GET request', (done) => {
+        done();
+      });
   })
 
-  decribe('findByID Failure Tests', () => {
-    it('')
+  describe('findByID Failure Tests', () => {
+
   })
 });
