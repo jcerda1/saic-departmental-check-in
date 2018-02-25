@@ -47,11 +47,10 @@ describe('Saleforce Auth Controller Tests', () => {
     });
 
     it('Should make a POST request with axios to the Salesforce auth server', (done) => {
-      // getToken(mockRequest, mockResponse);
-      // expect(axiosPostSpy).to.have.been.calledWith(`https://test.salesforce.com/services/oauth2/token`);
       testMiddleWare(getToken, done)
       .then((req, res) => {
-         expect(axiosPostSpy).to.have.been.calledWith(`https://test.salesforce.com/services/oauth2/token`)
+        const url = `https://test.salesforce.com/services/oauth2/token`;
+        expect(axiosPostSpy).to.have.been.calledWith(url);
       });
     });
 
