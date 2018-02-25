@@ -1,12 +1,12 @@
 const express = require('express');
 const axios = require('axios');
 const sinon = require('sinon');
-const supertest = require('supertest');
 const chai = require('chai');
 const sinonChai = require('sinon-chai');
 const proxyquire = require('proxyquire');
 const Promise = require('bluebird');
 const testController = require('../test_helpers/testController.js');
+const testMiddleWare = require('../test_helpers/testMiddleWare.js');
 const expect = chai.expect;
 
 chai.use(sinonChai);
@@ -14,19 +14,12 @@ chai.use(sinonChai);
 describe('Saleforce Auth Controller Tests', () => {
 
   describe('Success Tests', () => {
-    const testMiddleWare = require('../test_helpers/testMiddleWare.js');
     let axiosPostStub;
     let axiosPostSpy;
     let getToken;
-    let nextStub;
-    let nextSpy;
-    let mockRequest;
-    let mockResponse;
     let axiosPostErrStub;
 
     beforeEach(() => {
-      mockRequest = {};
-      mockResponse = {send: sinon.spy()};
 
       axiosPostStub = (url, body, params) => {
             return new Promise((resolve, reject) => {
@@ -35,8 +28,6 @@ describe('Saleforce Auth Controller Tests', () => {
           }
 
       axiosPostSpy = sinon.spy(axiosPostStub);
-
-      nextSpy = sinon.spy();
 
       getToken = proxyquire('../../server/controllers/salesforce/auth.js', {
         axios: {
@@ -82,7 +73,6 @@ describe('Saleforce Auth Controller Tests', () => {
     });
 
     it(`Should attach token to next request`, (done) => {
-      getToken(mockRequest, mockResponse, nextSpy);
       testMiddleWare(getToken, done)
       .then((req, res) => {
         expect(req.access_token).to.equal('00DQ000000GKkqu!AQsAQAxMs');
@@ -95,16 +85,11 @@ describe('Saleforce Auth Controller Tests', () => {
     let axiosPostStub;
     let axiosPostSpy;
     let getToken;
-    let nextStub;
-    let nextSpy;
-    let mockRequest;
-    let mockResponse;
     let axiosPostErrStub;
 
-    console.log('stub', axiosPostStub)
     beforeEach(() => {
       mockRequest = {};
-      mockResponse = {send: sinon.spy()};
+      mockResponse = { send: sinon.spy() };
 
       axiosPostErrStub = (url, body, params) => {
             return new Promise((resolve, reject) => {
@@ -113,8 +98,6 @@ describe('Saleforce Auth Controller Tests', () => {
           }
 
       axiosPostSpy = sinon.spy(axiosPostErrStub);
-
-      nextSpy = sinon.spy();
 
       getToken = proxyquire('../../server/controllers/salesforce/auth.js', {
         axios: {
