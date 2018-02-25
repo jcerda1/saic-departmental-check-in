@@ -30,7 +30,6 @@ describe('Saleforce Auth Controller Tests', () => {
 
       axiosPostStub = (url, body, params) => {
             return new Promise((resolve, reject) => {
-              console.log('Sending response')
               resolve({data: {access_token: '00DQ000000GKkqu!AQsAQAxMs'}});
             });
           }
@@ -55,10 +54,21 @@ describe('Saleforce Auth Controller Tests', () => {
     });
 
     it('Should contain all Salesforce auth params', (done) => {
-      getToken(mockRequest, mockResponse, nextSpy);
-      const params = axiosPostSpy.args[0][2].params;
-      expect(params).to.have.keys('grant_type', 'client_id', 'client_secret', 'username', 'password');
-      done()
+      testMiddleWare(getToken, done)
+      .then((req, res) => {
+        const expectedParams = [
+          'grant_type',
+          'client_id',
+          'client_secret',
+          'username',
+          'password'
+        ];
+
+        const actualParams = axiosPostSpy.args[0][2].params;
+
+        expect(actualParams).to.have.keys(expectedParams);
+        done()
+      });
     });
 
     it(`Should have a grant_type of 'password'`, (done) => {
