@@ -18,7 +18,7 @@ exports.findByContactId = (req, res) => {
     res.send(data.data);
   })
   .catch(err => {
-    res.send(err.response.data);
+    res.status(400).send(err.response.data);
   })
 };
 

@@ -91,7 +91,7 @@ describe('Case Controller Tests', () => {
     });
 
     it('Should respond with an error if no ID parameter is present on request', (done) => {
-      request.get('/test').expect(401, done);
+      request.get('/test').expect(400, done);
     });
 
     it('Should send the error data if axios GET request fails', (done) => {
