@@ -15,7 +15,7 @@ describe('Case Controller Tests', () => {
   describe('findByContactId Success Tests', () => {
     let axiosGetStub;
     let axiosGetSpy;
-    let findById;
+    let findByContactId;
     let request;
     let app;
 
@@ -63,7 +63,42 @@ describe('Case Controller Tests', () => {
         done();
       });
     })
-
-
   });
+
+  describe('findByContactId Failure Tests', () => {
+    let axiosGetErrStub;
+    let findByContactId;
+    let request;
+    let app
+
+    beforeEach(() => {
+      axiosGetErrStub = (url, body, params) => {
+        return new Promise((resolve, reject) => {
+          reject({response: {data: 'TEST ERROR'}});
+        });
+      }
+
+      findByContactId = proxyquire('../../server/controllers/salesforce/case.js', {
+        axios: {
+          get: axiosGetErrStub
+        }
+      }).findByContactId;
+
+      app = express();
+      request = supertest(app);
+
+      app.get('/test', findByContactId);
+    });
+
+    it('Should respond with an error if no ID parameter is present on request', (done) => {
+      request.get('/test').expect(401, done);
+    });
+
+    it('Should send the error data if axios GET request fails', (done) => {
+      request.get('/test').query({ id: 0000000}).end((err, res) => {
+         expect(res.text).to.equal('TEST ERROR');
+         done();
+      });
+    });
+  })
 });
