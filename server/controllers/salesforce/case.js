@@ -25,6 +25,10 @@ exports.findByContactId = (req, res) => {
 exports.createNew = (req, res) => {
   const url = `https://saic--HDBox.cs3.my.salesforce.com/services/data/v20.0/sobjects/Case/`;
 
+  if (!req.body.subject || !req.body.id) {
+    res.status(400).send({data: 'Subject or ID number missing'});
+  }
+
   const caseData = {
     Subject: req.body.subject,
     ContactId: req.body.id,
@@ -56,6 +60,10 @@ exports.createNew = (req, res) => {
 
 exports.updateStatus = (req, res) => {
   const url = `https://saic--HDBox.cs3.my.salesforce.com/services/data/v20.0/sobjects/Case/${req.body.id}`;
+
+  if (!req.body.status || !req.body.id) {
+    res.status(400).send({data: 'Status or ID number missing'});
+  }
 
   axios.patch(url, {Status: req.body.status}, {
     headers: {
