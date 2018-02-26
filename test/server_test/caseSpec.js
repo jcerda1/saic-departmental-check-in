@@ -11,6 +11,7 @@ const supertest = require('supertest');
 chai.use(sinonChai);
 
 describe('Case Controller Tests', () => {
+
   describe('findByContactId Success Tests', () => {
     let axiosGetStub;
     let axiosGetSpy;
@@ -36,7 +37,14 @@ describe('Case Controller Tests', () => {
       app = express();
       request = supertest(app);
 
-      app.get('/test', findById);
+      app.get('/test', findByContactId);
+    });
+
+    it('Should make an axios GET request', (done) => {
+      request.get('/test').query({ id: 0000000}).end((err, res) => {
+        expect(axiosGetSpy).to.have.been.called;
+        done();
+      });
     });
   });
 });
