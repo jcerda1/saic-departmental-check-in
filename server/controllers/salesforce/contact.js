@@ -2,7 +2,7 @@ const axios = require('axios');
 
 exports.findById = (req, res) => {
   if (!req.query.id) {
-    res.status(401).send('No ID number provided');
+    res.status(400).send('No ID number provided');
   } else {
     const url = `https://saic--HDBox.cs3.my.salesforce.com/services/data/v20.0/query?q=`;
 
