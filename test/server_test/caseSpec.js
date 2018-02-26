@@ -47,7 +47,6 @@ describe('Case Controller Tests', () => {
       });
     });
 
-
     it('Should add an authorization header to the axios GET request', (done) => {
       request.get('/test').query({ id: 0000000}).expect(200, (err, res) => {
         const headers = axiosGetSpy.args[0][1].headers;
@@ -55,6 +54,16 @@ describe('Case Controller Tests', () => {
         done();
       });
     })
+
+    it('Should send the case data in the response', (done) => {
+      request.get('/test').query({ id: 0000000}).expect(200, (err, res) => {
+        const expectedResponse = 'TEST CASE DATA';
+        const actualResponse = res.text;
+        expect(actualResponse).to.equal(expectedResponse);
+        done();
+      });
+    })
+
 
   });
 });
