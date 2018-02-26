@@ -148,17 +148,18 @@ describe('Case Controller Tests', () => {
         const headers = axiosPostSpy.args[0][2].headers;
         expect(headers).to.have.keys('Authorization');
         done();
-
       });
     })
 
-    // it('Should send the case data in the response', (done) => {
-    //   request.get('/test').query({ id: 0000000}).expect(200, (err, res) => {
-    //     const expectedResponse = 'TEST CASE DATA';
-    //     const actualResponse = res.text;
-    //     expect(actualResponse).to.equal(expectedResponse);
-    //     done();
-    //   });
-    // })
+    it('Should send the case data in the response', (done) => {
+      request.post('/test')
+      .send({ id:0000000, subject: 'TEST SUBJECT'})
+      .expect(200, (err, res) => {
+        const expectedResponse = 'TEST CASE DATA';
+        const actualResponse = res.text;
+        expect(actualResponse).to.equal(expectedResponse);
+        done();
+      });
+    })
   });
 });
