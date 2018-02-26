@@ -46,5 +46,15 @@ describe('Case Controller Tests', () => {
         done();
       });
     });
+
+
+    it('Should add an authorization header to the axios GET request', (done) => {
+      request.get('/test').query({ id: 0000000}).expect(200, (err, res) => {
+        const headers = axiosGetSpy.args[0][1].headers;
+        expect(headers).to.have.keys('Authorization');
+        done();
+      });
+    })
+
   });
 });
