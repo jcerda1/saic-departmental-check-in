@@ -7,6 +7,36 @@ const proxyquire = require('proxyquire');
 const Promise = require('bluebird');
 const expect = chai.expect;
 const supertest = require('supertest');
-const testController = require('../test_helpers/testController.js');
 
 chai.use(sinonChai);
+
+describe('Case Controller Tests', () => {
+  describe('findByContactId Success Tests', () => {
+    let axiosGetStub;
+    let axiosGetSpy;
+    let findById;
+    let request;
+    let app;
+
+    beforeEach(() => {
+      axiosGetStub = (url, body, params) => {
+        return new Promise((resolve, reject) => {
+          resolve({ data: 'TEST CASE DATA'});
+        });
+      }
+
+      axiosGetSpy = sinon.spy(axiosGetStub);
+
+      findByContactId = proxyquire('../../server/controllers/salesforce/case.js', {
+        axios: {
+          get: axiosGetSpy
+        }
+      }).findByContactId;
+
+      app = express();
+      request = supertest(app);
+
+      app.get('/test', findById);
+    });
+  });
+});
