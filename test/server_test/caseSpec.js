@@ -162,4 +162,35 @@ describe('Case Controller Tests', () => {
       });
     })
   });
+
+  describe('CreatNew Failure Tests', () => {
+    let axiosPostErrStub;
+    let axiosPostSpy;
+    let createNew;
+    let request;
+    let app;
+
+    beforeEach(() => {
+      axiosPostErrStub = (url, body, params) => {
+        return new Promise((resolve, reject) => {
+          reject({ data: 'TEST ERROR'});
+        });
+      }
+
+      axiosPostSpy = sinon.spy(axiosPostErrStub);
+
+      createNew = proxyquire('../../server/controllers/salesforce/case.js', {
+        axios: {
+          post: axiosPostSpy
+        }
+      }).createNew;
+
+      app = express();
+      app.use(bodyParser.json({ type: 'application/json' }));
+      request = supertest(app);
+      app.post('/test', createNew);
+
+    });
+
+  });
 });
