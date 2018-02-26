@@ -101,4 +101,64 @@ describe('Case Controller Tests', () => {
       });
     });
   })
+
+  describe('CreatNew Success Tests', () => {
+    let axiosPostStub;
+    let axiosPostSpy;
+    let createNew;
+    let request;
+    let app;
+
+    beforeEach(() => {
+      axiosPostStub = (url, body, params) => {
+        return new Promise((resolve, reject) => {
+          console.log('SUCCESS')
+          resolve({ data: 'TEST CASE DATA'});
+        });
+      }
+
+      axiosPostSpy = sinon.spy(axiosPostStub);
+
+      createNew = proxyquire('../../server/controllers/salesforce/case.js', {
+        axios: {
+          post: axiosPostSpy
+        }
+      }).createNew;
+
+      app = express();
+      request = supertest(app);
+
+      app.post('/test', createNew);
+
+      const bodyParser = require('body-parser');
+      app.use(bodyParser.json());
+    });
+
+    it('Should make an axios POST request', (done) => {
+      request.post('/test')
+     //.set('Accept', /application\/json/)
+      .send({ id:0000000, subject: 'TEST SUBJECT'})
+      .then((res) => {
+        expect(axiosPostSpy).to.have.been.called;
+        done();
+      });
+    });
+
+    // it('Should add an authorization header to the axios GET request', (done) => {
+    //   request.get('/test').query({ id: 0000000}).expect(200, (err, res) => {
+    //     const headers = axiosGetSpy.args[0][1].headers;
+    //     expect(headers).to.have.keys('Authorization');
+    //     done();
+    //   });
+    // })
+
+    // it('Should send the case data in the response', (done) => {
+    //   request.get('/test').query({ id: 0000000}).expect(200, (err, res) => {
+    //     const expectedResponse = 'TEST CASE DATA';
+    //     const actualResponse = res.text;
+    //     expect(actualResponse).to.equal(expectedResponse);
+    //     done();
+    //   });
+    // })
+  });
 });
