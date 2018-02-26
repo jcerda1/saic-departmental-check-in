@@ -113,7 +113,6 @@ describe('Case Controller Tests', () => {
     beforeEach(() => {
       axiosPostStub = (url, body, params) => {
         return new Promise((resolve, reject) => {
-          console.log('SUCCESS')
           resolve({ data: 'TEST CASE DATA'});
         });
       }
@@ -142,13 +141,16 @@ describe('Case Controller Tests', () => {
       });
     });
 
-    // it('Should add an authorization header to the axios GET request', (done) => {
-    //   request.get('/test').query({ id: 0000000}).expect(200, (err, res) => {
-    //     const headers = axiosGetSpy.args[0][1].headers;
-    //     expect(headers).to.have.keys('Authorization');
-    //     done();
-    //   });
-    // })
+    it('Should add an authorization header to the axios POST request', (done) => {
+      request.post('/test')
+      .send({ id:0000000, subject: 'TEST SUBJECT'})
+      .expect(200, (err, res) => {
+        const headers = axiosPostSpy.args[0][2].headers;
+        expect(headers).to.have.keys('Authorization');
+        done();
+
+      });
+    })
 
     // it('Should send the case data in the response', (done) => {
     //   request.get('/test').query({ id: 0000000}).expect(200, (err, res) => {
