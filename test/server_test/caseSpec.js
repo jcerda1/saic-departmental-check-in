@@ -7,6 +7,7 @@ const proxyquire = require('proxyquire');
 const Promise = require('bluebird');
 const expect = chai.expect;
 const supertest = require('supertest');
+const bodyParser = require('body-parser');
 
 chai.use(sinonChai);
 
@@ -126,17 +127,14 @@ describe('Case Controller Tests', () => {
       }).createNew;
 
       app = express();
+      app.use(bodyParser.json({ type: 'application/json' }));
       request = supertest(app);
-
       app.post('/test', createNew);
 
-      const bodyParser = require('body-parser');
-      app.use(bodyParser.json());
     });
 
     it('Should make an axios POST request', (done) => {
       request.post('/test')
-     //.set('Accept', /application\/json/)
       .send({ id:0000000, subject: 'TEST SUBJECT'})
       .then((res) => {
         expect(axiosPostSpy).to.have.been.called;
