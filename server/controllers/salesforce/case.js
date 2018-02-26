@@ -50,7 +50,7 @@ exports.createNew = (req, res) => {
     res.send(data.data);
   })
   .catch(err => {
-    res.send(err);
+    res.status(400).send(err.response.data);
   })
 };
 
@@ -66,8 +66,6 @@ exports.updateStatus = (req, res) => {
     res.send(data.data);
   })
   .catch(err => {
-    console.log('ERROR')
-    console.log(err)
-    res.send(err);
+    res.status(400).send(err.response.data);
   })
 };
