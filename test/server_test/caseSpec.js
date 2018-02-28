@@ -173,7 +173,7 @@ describe('Case Controller Tests', () => {
     beforeEach(() => {
       axiosPostErrStub = (url, body, params) => {
         return new Promise((resolve, reject) => {
-          reject({ data: 'TEST ERROR'});
+          reject({ response:{ data: 'TEST ERROR' }});
         });
       }
 
@@ -189,8 +189,11 @@ describe('Case Controller Tests', () => {
       app.use(bodyParser.json({ type: 'application/json' }));
       request = supertest(app);
       app.post('/test', createNew);
-
     });
 
+
+    it('Should respond with an error if ID or subject parameter is not present on request', (done) => {
+      request.post('/test').expect(400, done)
+    });
   });
 });
