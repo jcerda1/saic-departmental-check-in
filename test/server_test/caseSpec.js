@@ -134,7 +134,7 @@ describe('Case Controller Tests', () => {
 
     it('Should make an axios POST request', (done) => {
       request.post('/test')
-      .send({ id:0000000, subject: 'TEST SUBJECT'})
+      .send({ id:'0000000', subject: 'TEST SUBJECT'})
       .then((res) => {
         expect(axiosPostSpy).to.have.been.called;
         done();
@@ -143,7 +143,7 @@ describe('Case Controller Tests', () => {
 
     it('Should add an authorization header to the axios POST request', (done) => {
       request.post('/test')
-      .send({ id:0000000, subject: 'TEST SUBJECT'})
+      .send({ id:'0000000', subject: 'TEST SUBJECT'})
       .expect(200, (err, res) => {
         const headers = axiosPostSpy.args[0][2].headers;
         expect(headers).to.have.keys('Authorization');
@@ -153,7 +153,7 @@ describe('Case Controller Tests', () => {
 
     it('Should send the case data in the response', (done) => {
       request.post('/test')
-      .send({ id:0000000, subject: 'TEST SUBJECT'})
+      .send({ id:'0000000', subject: 'TEST SUBJECT'})
       .expect(200, (err, res) => {
         const expectedResponse = 'TEST CASE DATA';
         const actualResponse = res.text;
@@ -173,7 +173,7 @@ describe('Case Controller Tests', () => {
     beforeEach(() => {
       axiosPostErrStub = (url, body, params) => {
         return new Promise((resolve, reject) => {
-          reject({ response:{ data: 'TEST ERROR' }});
+          reject({ data: 'TEST ERROR'});
         });
       }
 
@@ -191,9 +191,5 @@ describe('Case Controller Tests', () => {
       app.post('/test', createNew);
     });
 
-
-    it('Should respond with an error if ID or subject parameter is not present on request', (done) => {
-      request.post('/test').expect(400, done)
-    });
   });
 });
