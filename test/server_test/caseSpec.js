@@ -253,6 +253,17 @@ describe('Case Controller Tests', () => {
       });
     })
 
+    it('Should send the response data', (done) => {
+      request.patch('/test')
+      .send({ id:'0000000', status: 'TEST STATUS'})
+      .expect(200, (err, res) => {
+        const expectedResponse = 'TEST CASE DATA';
+        const actualResponse = res.text;
+        expect(actualResponse).to.equal(expectedResponse);
+        done();
+      });
+    });
+
 
   });
 });
