@@ -20,14 +20,14 @@ const render = Component => {
   )
 }
 
-if (module.hot && HOT) {
-  render(App);
+// if (module.hot && HOT) {
+//   render(App);
 
-  module.hot.accept('../components/App.jsx', () => {
-    console.log('Reloading')
-    const nextApp = require('../components/App.jsx').default;
-    render(nextApp);
-  })
-} else {
-  render(App);
-}
+//   module.hot.accept('../components/App.jsx', () => {
+//     console.log('Reloading')
+//     const nextApp = require('../components/App.jsx').default;
+//     render(nextApp);
+//   })
+// } else {
+  render(Root);
+//}

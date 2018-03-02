@@ -11,5 +11,6 @@ const Root = (props) => {
       <Router history={history} routes={routes}/>
     </Provider>
   )
-
 };
+
+export default Root;
