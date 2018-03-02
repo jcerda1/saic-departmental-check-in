@@ -233,5 +233,16 @@ describe('Case Controller Tests', () => {
       request = supertest(app);
       app.patch('/test', updateStatus);
     });
+
+    it('Should make an axios PATCH request', (done) => {
+      request.patch('/test')
+      .send({ id:'0000000', status: 'TEST STATUS'})
+      .then((res) => {
+        expect(axiosPatchSpy).to.have.been.called;
+        done();
+      });
+    });
+
+
   });
 });
