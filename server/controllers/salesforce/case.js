@@ -62,17 +62,20 @@ exports.createNew = (req, res) => {
 exports.updateStatus = (req, res) => {
   const url = `https://saic--HDBox.cs3.my.salesforce.com/services/data/v20.0/sobjects/Case/${req.body.id}`;
 
-  axios.patch(url, {Status: req.body.status}, {
+  if (!req.body.id || !req.body.status) {
+    res.status(400).send({data: 'ID or status missing'});
+  } else {
+
+    axios.patch(url, {Status: req.body.status}, {
     headers: {
       Authorization: 'Bearer ' + req.access_token
-    }
-  })
-  .then(data => {
-    res.send(data.data);
-  })
-  .catch(err => {
-    console.log('ERROR')
-    console.log(err)
-    res.send(err);
-  })
+      }
+    })
+    .then(data => {
+      res.send(data.data);
+    })
+    .catch(err => {
+      res.status(400).send(err.response.data);
+    })
+  }
 };
