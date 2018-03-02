@@ -27,35 +27,36 @@ exports.createNew = (req, res) => {
 
   if (!req.body.id || !req.body.subject) {
     res.status(400).send({data: 'ID or subject missing'});
-  }
+  } else {
 
-  const caseData = {
-    Subject: req.body.subject,
-    ContactId: req.body.id,
-    Origin: 'Help Desk Walk In SP401',
-    RecordTypeId: '0121a000000UieFAAS',
-    OwnerId: '0051a0000013SXcAAM',
-    Walk_In__c: true,
-    Type: 'Tech Support',
-    Sub_Type2__c: 'Software & Online Services',
-    Category3__c: 'macOS',
-    Issue4__c: 'Other Issue',
-    Status: 'New',
-    isTestCase__c: true,
-    Receive_Email_For_This_Case__c: false
-  }
-
-  axios.post(url, caseData, {
-    headers: {
-      Authorization: 'Bearer ' + req.access_token
+    const caseData = {
+      Subject: req.body.subject,
+      ContactId: req.body.id,
+      Origin: 'Help Desk Walk In SP401',
+      RecordTypeId: '0121a000000UieFAAS',
+      OwnerId: '0051a0000013SXcAAM',
+      Walk_In__c: true,
+      Type: 'Tech Support',
+      Sub_Type2__c: 'Software & Online Services',
+      Category3__c: 'macOS',
+      Issue4__c: 'Other Issue',
+      Status: 'New',
+      isTestCase__c: true,
+      Receive_Email_For_This_Case__c: false
     }
-  })
-  .then(data => {
-    res.send(data.data);
-  })
-  .catch(err => {
-    res.send(err);
-  })
+
+    axios.post(url, caseData, {
+      headers: {
+        Authorization: 'Bearer ' + req.access_token
+      }
+    })
+    .then(data => {
+      res.send(data.data);
+    })
+    .catch(err => {
+      res.send(err);
+    });
+  }
 };
 
 exports.updateStatus = (req, res) => {
