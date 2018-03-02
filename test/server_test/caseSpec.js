@@ -103,7 +103,7 @@ describe('Case Controller Tests', () => {
     });
   })
 
-  describe('CreatNew Success Tests', () => {
+  describe('creatNew Success Tests', () => {
     let axiosPostStub;
     let axiosPostSpy;
     let createNew;
@@ -162,7 +162,7 @@ describe('Case Controller Tests', () => {
     })
   });
 
-  describe('CreatNew Failure Tests', () => {
+  describe('creatNew Failure Tests', () => {
     let axiosPostErrStub;
     let axiosPostSpy;
     let createNew;
@@ -190,7 +190,7 @@ describe('Case Controller Tests', () => {
       app.post('/test', createNew);
     });
 
-    it('Should send an error if ID or Subjects is missing from request', (done) => {
+    it('Should send an error if ID or Subject is missing from request', (done) => {
       request.post('/test').expect(400, done);
     });
 
@@ -263,6 +263,50 @@ describe('Case Controller Tests', () => {
         done();
       });
     });
+  });
+
+  describe('updateStatus Failure Tests', () => {
+    let axiosPatchErrStub;
+    let axiosPatchSpy;
+    let updateStatus;
+    let request;
+    let app;
+
+    beforeEach(() => {
+      axiosPatchErrStub = (url, body, params) => {
+        return new Promise((resolve, reject) => {
+          reject({response: {data: 'TEST ERROR'}});
+        });
+      }
+
+      axiosPatchSpy = sinon.spy(axiosPatchErrStub);
+
+      updateStatus = proxyquire('../../server/controllers/salesforce/case.js', {
+        axios: {
+          patch: axiosPatchSpy
+        }
+      }).updateStatus;
+
+      app = express();
+      app.use(bodyParser.json({ type: 'application/json' }));
+      request = supertest(app);
+      app.patch('/test', updateStatus);
+    });
+
+    it('Should send an error if ID or Status is missing from request', (done) => {
+      request.patch('/test').expect(400, done);
+    });
+
+    // it('Should send the error data if axios POST request fails', (done) => {
+    //   request.post('/test')
+    //   .send({ id:'0000000', subject: 'TEST SUBJECT'})
+    //   .then(res => {
+    //     const actualResponse = res.text;
+    //     const expectedResponse = 'TEST ERROR';
+    //     expect(actualResponse).to.equal(expectedResponse);
+    //     done();
+    //   });
+    // });
 
 
   });
