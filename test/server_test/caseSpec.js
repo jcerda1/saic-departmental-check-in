@@ -190,5 +190,9 @@ describe('Case Controller Tests', () => {
       app.post('/test', createNew);
     });
 
+    it('Should send an error if ID or Subjects is missing from request', (done) => {
+      request.post('/test').expect(400, done);
+    });
+
   });
 });
