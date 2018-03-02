@@ -129,7 +129,6 @@ describe('Case Controller Tests', () => {
       app.use(bodyParser.json({ type: 'application/json' }));
       request = supertest(app);
       app.post('/test', createNew);
-
     });
 
     it('Should make an axios POST request', (done) => {

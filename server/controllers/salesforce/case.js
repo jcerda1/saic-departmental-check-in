@@ -25,7 +25,9 @@ exports.findByContactId = (req, res) => {
 exports.createNew = (req, res) => {
   const url = `https://saic--HDBox.cs3.my.salesforce.com/services/data/v20.0/sobjects/Case/`;
 
-  console.log(req.body.subject, req.body.id)
+  if (!req.body.id || !req.body.subject) {
+    res.status(400).send({data: 'ID or subject missing'});
+  }
 
   const caseData = {
     Subject: req.body.subject,
