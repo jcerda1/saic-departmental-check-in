@@ -243,6 +243,16 @@ describe('Case Controller Tests', () => {
       });
     });
 
+    it('Should add an authorization header to the axios PATCH request', (done) => {
+      request.patch('/test')
+      .send({ id:'0000000', status: 'TEST STATUS'})
+      .expect(200, (err, res) => {
+        const headers = axiosPatchSpy.args[0][2].headers;
+        expect(headers).to.have.keys('Authorization');
+        done();
+      });
+    })
+
 
   });
 });
