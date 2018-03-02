@@ -172,7 +172,7 @@ describe('Case Controller Tests', () => {
     beforeEach(() => {
       axiosPostErrStub = (url, body, params) => {
         return new Promise((resolve, reject) => {
-          reject({ data: 'TEST ERROR'});
+          reject({response: {data: 'TEST ERROR'}});
         });
       }
 
@@ -192,6 +192,18 @@ describe('Case Controller Tests', () => {
 
     it('Should send an error if ID or Subjects is missing from request', (done) => {
       request.post('/test').expect(400, done);
+    });
+
+    it('Should send the error data if axios POST request fails', (done) => {
+      request.post('/test')
+      .send({ id:'0000000', subject: 'TEST SUBJECT'})
+      .then(res => {
+        const actualResponse = res.text;
+        const expectedResponse = 'TEST ERROR';
+        expect(actualResponse).to.equal(expectedResponse);
+        done();
+      });
+
     });
 
   });
