@@ -190,7 +190,7 @@ describe('Case Controller Tests', () => {
       app.post('/test', createNew);
     });
 
-    it('Should send an error if ID or Subject is missing from request', (done) => {
+    it('Should send an error if ID or Subject is missing from POST request', (done) => {
       request.post('/test').expect(400, done);
     });
 
@@ -293,20 +293,20 @@ describe('Case Controller Tests', () => {
       app.patch('/test', updateStatus);
     });
 
-    it('Should send an error if ID or Status is missing from request', (done) => {
+    it('Should send an error if ID or Status is missing from PATCH request', (done) => {
       request.patch('/test').expect(400, done);
     });
 
-    // it('Should send the error data if axios POST request fails', (done) => {
-    //   request.post('/test')
-    //   .send({ id:'0000000', subject: 'TEST SUBJECT'})
-    //   .then(res => {
-    //     const actualResponse = res.text;
-    //     const expectedResponse = 'TEST ERROR';
-    //     expect(actualResponse).to.equal(expectedResponse);
-    //     done();
-    //   });
-    // });
+    it('Should send the error data if axios POST request fails', (done) => {
+      request.patch('/test')
+      .send({ id:'0000000', status: 'TEST STATUS'})
+      .then(res => {
+        const actualResponse = res.text;
+        const expectedResponse = 'TEST ERROR';
+        expect(actualResponse).to.equal(expectedResponse);
+        done();
+      });
+    });
 
 
   });
