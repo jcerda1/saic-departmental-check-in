@@ -203,8 +203,35 @@ describe('Case Controller Tests', () => {
         expect(actualResponse).to.equal(expectedResponse);
         done();
       });
-
     });
+  });
 
+  describe('updateStatus Success Tests', () => {
+    let axiosPatchStub;
+    let axiosPatchSpy;
+    let updateStatus;
+    let request;
+    let app;
+
+    beforeEach(() => {
+      axiosPatchStub = (url, body, params) => {
+        return new Promise((resolve, reject) => {
+          resolve({ data: 'TEST CASE DATA'});
+        });
+      }
+
+      axiosPatchSpy = sinon.spy(axiosPatchStub);
+
+      updateStatus = proxyquire('../../server/controllers/salesforce/case.js', {
+        axios: {
+          patch: axiosPatchSpy
+        }
+      }).updateStatus;
+
+      app = express();
+      app.use(bodyParser.json({ type: 'application/json' }));
+      request = supertest(app);
+      app.patch('/test', updateStatus);
+    });
   });
 });
