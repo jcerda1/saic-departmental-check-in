@@ -4,11 +4,10 @@ import routes from '../src/routes';
 import { Router } from 'react-router';
 
 const Root = (props) => {
-  const { store, history } = props;
 
   return (
-    <Provider store={store}>
-      <Router history={history} routes={routes}/>
+    <Provider store={props.store}>
+      <Router routes={routes}/>
     </Provider>
   )
 };

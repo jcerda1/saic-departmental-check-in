@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import configureStore from './store/configureStore';
+import { browserHistory } from 'react-router';
+import configureStore from './store/configureStore.js';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import App from '../components/App.jsx';
