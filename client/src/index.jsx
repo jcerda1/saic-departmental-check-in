@@ -3,22 +3,20 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/configureStore.js';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
-import { browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
 import App from '../components/App.jsx';
 import initialState from './reducers/initialState.js';
 import Root from '../containers/Root.js';
 
-const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
+//const store = configureStore();
+//const history = syncHistoryWithStore(browserHistory, store);
 
 const render = Component => {
   ReactDOM.render(
-    <AppContainer>
-      <Provider store={store}>
-        <Component />
-      </Provider>
-    </AppContainer>,
+    //<AppContainer>
+      //<Provider store={store}>
+        <Component />,
+      //</Provider>,
+    //</AppContainer>,
     document.getElementById('root'),
   )
 }
