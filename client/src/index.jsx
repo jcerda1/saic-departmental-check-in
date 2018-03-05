@@ -14,11 +14,10 @@ const render = Component => {
 }
 
 if (module.hot && HOT) {
-  render(App);
+  render(Root);
 
-  module.hot.accept('../components/App.jsx', () => {
-    console.log('Reloading')
-    const nextApp = require('../components/App.jsx').default;
+  module.hot.accept('../containers/Root.js', () => {
+    const nextApp = require('../containers/Root.js').default;
     render(nextApp);
   })
 } else {
