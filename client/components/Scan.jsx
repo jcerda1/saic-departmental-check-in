@@ -1,5 +1,7 @@
+import React from 'react';
+
 const Scan = (props) => {
-  (
+  return (
    <div className="main">
       <div className="flex-container title">Please scan your ID</div>
       <div className="flex-container fa fa-id-card"></div>
@@ -8,10 +10,11 @@ const Scan = (props) => {
           <input
             name="idNum"
             type="text"
-            onChange={}
           />
         </form>
       </div>
-    </div>
+  </div>
   )
-}
+};
+
+export default Scan;
