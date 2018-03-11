@@ -7,6 +7,8 @@ import CaseList from '../components/CaseList.jsx';
 const Cases = ({ contact }) => {
   const id = contact.EMPLIDPeoplesoftKey__c;
 
+  casesActions.getCases();
+  return <CaseList/>;
 };
 
 const mapStateToProps = (state) => {
