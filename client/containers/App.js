@@ -7,7 +7,7 @@ import { getContact } from '../src/actions/contactActions.js';
 import * as contactActions from '../src/actions/contactActions.js';
 
 const App = ({ userObj, contactActions }) => {
-  return userObj ? <Account user={userObj}/> : <Scan contactActions={contactActions}/>;
+  return userObj ? <Account user={userObj}/> : <Scan {...contactActions}/>;
 };
 
 const mapStateToProps = (state) => {
