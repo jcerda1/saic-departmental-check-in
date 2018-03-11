@@ -7,4 +7,4 @@ const newCase = (state = '', action) => {
       return state;
   }
 }
- export default cases;
+ export default newCase;

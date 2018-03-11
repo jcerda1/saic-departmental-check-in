@@ -3,31 +3,8 @@ import axios from 'axios';
 import Promise from 'bluebird';
 import '../css/loading.gif';
 
-class NewCase extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      subject: '',
-      updating: false
-    };
-    this.handleClick = this.handleClick.bind(this);
-    this.handleInput = this.handleInput.bind(this);
-  }
-
-  handleInput(event) {
-    this.setState({subject: event.target.value});
-  }
-
-  handleClick(event) {
-    this.setState({updating: true})
-    this.props.handleClick(this.state.subject)
-    .then((data) => {
-       this.setState({subject: '', updating: false});
-    });
-
-  }
-
-  render() {
+const NewCase = (props) => {
+    console.log(props)
     return (
       <div className="flex-container new-case">
         <div className="form-title username line">New Case</div>
@@ -38,24 +15,23 @@ class NewCase extends React.Component {
               className="case-subject"
               name="case-subject"
               type="text"
-              value={this.state.subject}
-              onChange={this.handleInput}
+              value={''}
+              onChange={''}
             />
           </div>
-          {this.state.updating ?
-            <img src="assets/loading.gif"
-               alt="Image not found"
-               height="35"
-               className="create"
-            />
-            :
-            <div className="btn" onClick={this.handleClick}>Create Case</div>
+          {//this.state.updating ?
+           // <img src="assets/loading.gif"
+            //   alt="Image not found"
+            //   height="35"
+           //    className="create"
+           // />
+           // :
+            <div className="btn" onClick={''}>Create Case</div>
           }
 
         </div>
       </div>
     );
-  }
 }
 
 export default NewCase;
