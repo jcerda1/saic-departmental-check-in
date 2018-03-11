@@ -2,6 +2,7 @@ import axios from 'axios';
 
 /*** Action Creators ***/
 const receiveCases = (data) => {
+  console.log('receiving cases', data.data.records)
   return {type: 'RECEIVE_CASES', cases: data.data.records};
 }
 
