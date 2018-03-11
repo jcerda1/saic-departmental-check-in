@@ -4,12 +4,11 @@ import { bindActionCreators } from 'redux';
 import AccountInfo from '../components/AccountInfo.jsx';
 
 const Account = (props) => {
-  console.log(props);
   return <AccountInfo/>;
 };
 
 const mapStateToProps = (state) => {
-  return {...state};
+  return {...state.contact};
 };
 
 const mapDispatchToProps = (dispatch) => {

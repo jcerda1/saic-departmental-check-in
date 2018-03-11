@@ -1,6 +1,7 @@
 import React from 'react';
 
 const AccountInfo = (props) => {
+  console.log(props)
   return (
       <div className="account">
         <div className="flex-container title user-info">

@@ -6,7 +6,7 @@ import Scan from '../components/Scan.jsx';
 import * as contactActions from '../src/actions/contactActions.js';
 
 const App = ({ contact, contactActions }) => {
-  return contact ? <Account user={contact}/> : <Scan {...contactActions}/>;
+  return contact ? <Account/> : <Scan {...contactActions}/>;
 };
 
 const mapStateToProps = (state) => {
