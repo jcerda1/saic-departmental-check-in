@@ -7,11 +7,11 @@ import CaseList from '../components/CaseList.jsx';
 const Cases = ({ contact, casesActions}) => {
   const id = contact.Id;
 
-  casesActions.getCases(id);
-  return <CaseList/>;
+  return <CaseList {...casesActions}/>;
 };
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return state;
 };
 
