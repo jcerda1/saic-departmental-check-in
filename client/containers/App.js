@@ -10,7 +10,7 @@ const App = ({ contact, contactActions }) => {
 };
 
 const mapStateToProps = (state) => {
-  return {...state};
+  return state;
 };
 
 const mapDispatchToProps = (dispatch) => {
