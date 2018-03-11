@@ -8,11 +8,11 @@ const receiveContact = (data) => {
 /*** Contact Actions ***/
 
 const getContact = (event) => (dispatch, getState) => {
-  const idNum = event.target.value;
+  const id = event.target.value;
 
-  if (idNum.length === 7) {
+  if (id.length === 7) {
     axios.get('/contact', {
-      params: {id: idNum}
+      params: {id}
     })
     .then(data => {
       dispatch(receiveContact(data));

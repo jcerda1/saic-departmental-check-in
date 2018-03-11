@@ -7,4 +7,4 @@ const cases = (state = '', action) => {
       return state;
   }
 }
- export default contact;
+ export default cases;
