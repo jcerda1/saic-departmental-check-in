@@ -1,16 +1,15 @@
 import React from 'react';
 
-const AccountInfo = (props) => {
-  console.log(props)
+const AccountInfo = ({ Name, Email, EMPLIDPeoplesoftKey__c }) => {
   return (
       <div className="account">
         <div className="flex-container title user-info">
-          <div className="username line title">{}</div>
+          <div className="username line title">{Name}</div>
           <table>
            <tbody>
               <tr>
-                <td><b>email: </b>{}</td>
-                <td><b>ID Number: </b>{}</td>
+                <td><b>email: </b>{Email}</td>
+                <td><b>ID Number: </b>{EMPLIDPeoplesoftKey__c}</td>
               </tr>
             </tbody>
           </table>
