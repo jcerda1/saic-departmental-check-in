@@ -7,8 +7,8 @@ class CaseList extends React.Component {
   }
 
   componentWillMount() {
-    console.log(this.props)
-    this.props.casesActions.getCases(this.props.contact.Id)
+    const { casesActions, contact } = this.props;
+    casesActions.getCases(contact.Id);
   }
 
   render() {
