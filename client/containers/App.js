@@ -6,14 +6,13 @@ import { bindActionCreators } from 'redux';
 import { getContact } from '../src/actions/contactActions.js';
 import * as contactActions from '../src/actions/contactActions.js';
 
-const App = (props) => {
-  console.log(props)
-  return props.userObj ? <Account/> : <Scan contactActions={props.contactActions}/>;
+const App = ({ userObj, contactActions }) => {
+  return userObj ? <Account user={userObj}/> : <Scan contactActions={contactActions}/>;
 };
 
 const mapStateToProps = (state) => {
     return {
-        userObj: state.contact
+      userObj: state.contact
     };
 };
 
