@@ -4,10 +4,11 @@ import { bindActionCreators } from 'redux';
 import * as casesActions from '../src/actions/casesActions.js';
 import CaseList from '../components/CaseList.jsx';
 
-const Cases = ({ contact }) => {
+const Cases = ({ contact, casesActions}) => {
   const id = contact.EMPLIDPeoplesoftKey__c;
+  console.log(casesActions)
 
-  casesActions.getCases();
+  casesActions.getCases(id);
   return <CaseList/>;
 };
 

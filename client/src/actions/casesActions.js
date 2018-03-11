@@ -8,8 +8,9 @@ const receiveCases = (data) => {
 /*** Case Actions ***/
 
 const getCases = (id) => (dispatch, getState) => {
+  console.log('Getting Cases')
   axios.get('/cases', {
-        params: {id}
+        params: {id: id}
       })
       .then(data => {
         dispatch(receiveCases(data));

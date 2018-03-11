@@ -5,6 +5,8 @@ const CaseList = (props) => {
   return (
     <div className="flex-container case-list">
       <div className="form-title line username">Cases</div>
+      {!props.cases ? <div className="flex-container">Getting Cases...</div>
+      :
       <table className="case-table">
         <tbody>
           <tr>
@@ -21,9 +23,12 @@ const CaseList = (props) => {
                     refreshList={props.refreshList}
                   />
           })
-        }
+          }
           </tbody>
       </table>
+
+      }
+
     </div>
   );
 }
