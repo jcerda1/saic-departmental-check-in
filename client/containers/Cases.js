@@ -11,7 +11,6 @@ const Cases = ({ contact, casesActions}) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return state;
 };
 
@@ -24,4 +23,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Cases);
+)(CaseList);

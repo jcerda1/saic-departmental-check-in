@@ -1,36 +1,45 @@
 import React from 'react';
 import CaseItem from './CaseItem.jsx';
 
-const CaseList = (props) => {
-  return (
-    <div className="flex-container case-list">
-      <div className="form-title line username">Cases</div>
-      {!props.cases ? <div className="flex-container">Getting Cases...</div>
-      :
-      <table className="case-table">
-        <tbody>
-          <tr>
-            <th>Case#</th>
-            <th className="subject-column">Subject</th>
-            <th>Status</th>
-            <th>Date Created</th>
-          </tr>
-          {props.cases.map((supportCase, i)=> {
-            return <CaseItem
-                    supportCase={supportCase}
-                    key={i}
-                    handleUpdate={props.handleUpdate}
-                    refreshList={props.refreshList}
-                  />
-          })
-          }
-          </tbody>
-      </table>
+class CaseList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-      }
+  componentWillMount() {
+    console.log(this.props)
+    this.props.casesActions.getCases(this.props.contact.Id)
+  }
 
-    </div>
-  );
+  render() {
+    return (
+      <div className="flex-container case-list">
+        <div className="form-title line username">Cases</div>
+        {!this.props.cases ? <div className="flex-container">Getting Cases...</div>
+        :
+        <table className="case-table">
+          <tbody>
+            <tr>
+              <th>Case#</th>
+              <th className="subject-column">Subject</th>
+              <th>Status</th>
+              <th>Date Created</th>
+            </tr>
+            {this.props.cases.map((supportCase, i)=> {
+              return <CaseItem
+                      supportCase={supportCase}
+                      key={i}
+                    />
+            })
+            }
+            </tbody>
+        </table>
+
+        }
+
+      </div>
+    );
+  }
 }
 
 export default CaseList;
