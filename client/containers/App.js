@@ -1,19 +1,16 @@
 import React from 'react';
-import Account from '../components/Account.jsx';
-import Scan from '../components/Scan.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getContact } from '../src/actions/contactActions.js';
+import Account from '../components/Account.jsx';
+import Scan from '../components/Scan.jsx';
 import * as contactActions from '../src/actions/contactActions.js';
 
-const App = ({ userObj, contactActions }) => {
-  return userObj ? <Account user={userObj}/> : <Scan {...contactActions}/>;
+const App = ({ contact, contactActions }) => {
+  return contact ? <Account user={contact}/> : <Scan {...contactActions}/>;
 };
 
 const mapStateToProps = (state) => {
-    return {
-      userObj: state.contact
-    };
+  return {...state};
 };
 
 const mapDispatchToProps = (dispatch) => {
