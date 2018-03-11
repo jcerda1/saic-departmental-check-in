@@ -2,7 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as casesActions from '../src/actions/casesActions.js';
-import CaseList from '../components/CaseList.js';
+import CaseList from '../components/CaseList.jsx';
+
+const Cases = ({ contact }) => {
+  const id = contact.EMPLIDPeoplesoftKey__c;
+
+};
 
 const mapStateToProps = (state) => {
   return state;
@@ -17,4 +22,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(CaseList);
+)(Cases);
