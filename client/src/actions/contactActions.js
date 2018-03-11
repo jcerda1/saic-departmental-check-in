@@ -8,6 +8,7 @@ const receiveContact = (data) => {
 /*** Contact Actions ***/
 
 const getContact = (event) => (dispatch, getState) => {
+  console.log('Getting contact')
   const idNum = event.target.value;
 
   if (idNum.length === 7) {

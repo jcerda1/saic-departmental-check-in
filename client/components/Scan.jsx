@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Scan = (props) => {
+const Scan = ({ contactActions }) => {
   return (
    <div className="main">
       <div className="flex-container title">Please scan your ID</div>
@@ -10,6 +10,10 @@ const Scan = (props) => {
           <input
             name="idNum"
             type="text"
+            onChange={(event) => {
+             console.log('change')
+             contactActions.getContact(event);
+            }}
           />
         </form>
       </div>
