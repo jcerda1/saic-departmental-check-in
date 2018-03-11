@@ -48,7 +48,7 @@ input {
   align-self: flex-start;
 }
 
-.account {
+.account > {
   height: 100vh;
   display: grid;
   grid-template-rows: 30% 20% 50%;

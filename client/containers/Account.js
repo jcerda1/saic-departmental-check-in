@@ -6,7 +6,7 @@ import Cases from './Cases.js';
 
 const Account = ({ contact, casesActions }) => {
   return (
-      <div>
+      <div className="flex-container">
         <AccountInfo {...contact}/>
         <Cases/>
       </div>
