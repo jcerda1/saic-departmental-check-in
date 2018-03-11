@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Account from '../components/Account.jsx';
+import Account from './Account.js';
 import Scan from '../components/Scan.jsx';
 import * as contactActions from '../src/actions/contactActions.js';
 

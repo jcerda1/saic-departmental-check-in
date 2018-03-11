@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import AccountInfo from '../components/AccountInfo.jsx';
 
 const Account = (props) => {
-  return ;
+  console.log(props);
+  return <AccountInfo/>;
 };
 
 const mapStateToProps = (state) => {
@@ -19,4 +21,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Account);
+)(AccountInfo);
