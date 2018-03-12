@@ -6,11 +6,11 @@ import NewCase from '../components/NewCase.jsx';
 import * as newCaseActions from '../src/actions/newCaseActions.js';
 import Cases from './Cases.js';
 
-const Account = ({ contact, newCaseActions }) => {
+const Account = ({ contact, newCaseActions, newCase }) => {
   return (
       <div>
         <AccountInfo {...contact}/>
-        <NewCase {...newCaseActions}/>
+        <NewCase subject={newCase.subject} { ...newCaseActions }/>
         <Cases/>
       </div>
     );

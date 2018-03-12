@@ -1,7 +1,7 @@
-const newCase = (state = '', action) => {
+const newCase = (state = { subject: '' }, action) => {
   switch(action.type) {
     case 'EDIT_SUBJECT':
-      let newState = action.subject;
+      newState.subject = action.subject;
       return newState;
     default:
       return state;

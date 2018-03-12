@@ -4,7 +4,7 @@ import Promise from 'bluebird';
 import '../css/loading.gif';
 
 const NewCase = (props) => {
-    console.log(props)
+  console.log(props)
     return (
       <div className="flex-container new-case">
         <div className="form-title username line">New Case</div>
@@ -15,7 +15,7 @@ const NewCase = (props) => {
               className="case-subject"
               name="case-subject"
               type="text"
-              value={''}
+              value={props.subject}
               onChange={''}
             />
           </div>
