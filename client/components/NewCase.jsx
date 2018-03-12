@@ -26,7 +26,7 @@ const NewCase = (props) => {
            //    className="create"
            // />
            // :
-            <div className="btn" onClick={''}>Create Case</div>
+            <div className="btn" onClick={props.createNew}>Create Case</div>
           }
 
         </div>

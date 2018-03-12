@@ -4,13 +4,19 @@ import { bindActionCreators } from 'redux';
 import AccountInfo from '../components/AccountInfo.jsx';
 import NewCase from '../components/NewCase.jsx';
 import * as newCaseActions from '../src/actions/newCaseActions.js';
+import * as caseActions from '../src/actions/caseActions.js';
 import Cases from './Cases.js';
 
-const Account = ({ contact, newCaseActions, newCase }) => {
+const Account = ({ contact, newCaseActions, caseActions, newCase }) => {
   return (
       <div>
         <AccountInfo {...contact}/>
-        <NewCase subject={newCase.subject} { ...newCaseActions }/>
+        <NewCase
+          subject={newCase.subject}
+          id={contact.EMPLIDPeoplesoftKey__c}
+          { ...newCaseActions }
+          { ...caseActions }
+        />
         <Cases/>
       </div>
     );
@@ -22,7 +28,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      newCaseActions: bindActionCreators(newCaseActions, dispatch)
+      newCaseActions: bindActionCreators(newCaseActions, dispatch),
+      caseActions: bindActionCreators(caseActions, dispatch)
     };
 };
 

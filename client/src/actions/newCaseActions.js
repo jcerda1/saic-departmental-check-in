@@ -5,7 +5,7 @@ const editSubject = (data) => {
   return {type: 'EDIT_SUBJECT', subject: data};
 }
 
-/*** Case Actions ***/
+/*** newCase Actions ***/
 
 const handleEdit = (event) => (dispatch, getState) => {
   dispatch(editSubject(event.target.value));
