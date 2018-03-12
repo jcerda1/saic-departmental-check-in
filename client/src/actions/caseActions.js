@@ -1,4 +1,5 @@
 import axios from 'axios';
+import{ getCases } from './casesActions.js';
 
 /*** Action Creators ***/
 
@@ -9,16 +10,15 @@ const createNew = (event) => (dispatch, getState) => {
   const { contact, newCase } = getState();
 
   axios.post('/cases', {
-        id: contact.Id,
-        subject: newCase.subject
-      })
-      .then(data => {
-        console.log(data);
-      })
-      .catch(err => {
-        console.log(err);
-      })
-
-}
+    id: contact.Id,
+    subject: newCase.subject
+  })
+  .then(data => {
+    getCases(contact.Id)(dispatch);
+  })
+  .catch(err => {
+    console.log(err);
+  })
+};
 
 export {createNew};
