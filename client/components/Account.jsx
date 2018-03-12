@@ -77,10 +77,6 @@ class Account extends React.Component {
       <div className="account">
         <div className="flex-container title user-info">
           <div className="username line title">{this.props.user.Name}</div>
-          <img
-            src={`https://information.artic.edu/pspics/${this.props.user.EMPLIDPeoplesoftKey__c}`}
-            height="125"
-          />
           <table>
            <tbody>
               <tr>
