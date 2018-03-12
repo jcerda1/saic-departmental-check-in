@@ -7,4 +7,8 @@ const editSubject = (data) => {
 
 /*** Case Actions ***/
 
-export {editSubject};
+const handleEdit = (event) => (dispatch, getState) => {
+  dispatch(editSubject(event.target.value));
+}
+
+export {handleEdit};

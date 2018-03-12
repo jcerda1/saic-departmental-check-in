@@ -16,7 +16,7 @@ const NewCase = (props) => {
               name="case-subject"
               type="text"
               value={props.subject}
-              onChange={''}
+              onChange={props.handleEdit}
             />
           </div>
           {//this.state.updating ?
