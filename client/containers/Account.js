@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AccountInfo from '../components/AccountInfo.jsx';
 import NewCase from '../components/NewCase.jsx';
+import * as newCaseActions from '../src/actions/newCaseActions.js';
 import Cases from './Cases.js';
 
-const Account = ({ contact, casesActions }) => {
+const Account = ({ contact, newCaseActions }) => {
   return (
       <div>
         <AccountInfo {...contact}/>
-        <NewCase/>
+        <NewCase {...newCaseActions}/>
         <Cases/>
       </div>
     );
@@ -28,5 +29,5 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
 )(Account);
