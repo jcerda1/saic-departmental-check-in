@@ -19,4 +19,4 @@ const toggleUpdating = () => (dispatch, getState) => {
 
 }
 
-export {handleEdit};
+export {handleEdit, toggleUpdating};
