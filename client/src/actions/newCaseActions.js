@@ -16,7 +16,9 @@ const handleEdit = (event) => (dispatch, getState) => {
 }
 
 const toggleUpdating = () => (dispatch, getState) => {
+  const updating = getState().updating;
 
+  dispatch(update(!updating));
 }
 
 export {handleEdit, toggleUpdating};
