@@ -18,13 +18,13 @@ const NewCase = (props) => {
               onChange={props.handleEdit}
             />
           </div>
-          {//this.state.updating ?
-           // <img src="assets/loading.gif"
-            //   alt="Image not found"
-            //   height="35"
-           //    className="create"
-           // />
-           // :
+          {props.updating ?
+            <img src="assets/loading.gif"
+              alt="Image not found"
+              height="35"
+              className="create"
+            />
+            :
             <div className="btn" onClick={props.createNew}>Create Case</div>
           }
 

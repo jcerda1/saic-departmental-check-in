@@ -1,5 +1,6 @@
 import axios from 'axios';
 import{ getCases } from './casesActions.js';
+import * as newCaseActions from './newCaseActions.js';
 
 /*** Action Creators ***/
 
@@ -7,6 +8,8 @@ import{ getCases } from './casesActions.js';
 /*** Case Actions ***/
 
 const createNew = (event) => (dispatch, getState) => {
+  console.log('Creating new case')
+  newCaseActions.toggleUpdating()(dispatch, getState);
   const { contact, newCase } = getState();
 
   axios.post('/cases', {
@@ -15,6 +18,7 @@ const createNew = (event) => (dispatch, getState) => {
   })
   .then(data => {
     getCases(contact.Id)(dispatch);
+    newCaseActions.toggleUpdating()(dispatch, getState);
   })
   .catch(err => {
     console.log(err);
