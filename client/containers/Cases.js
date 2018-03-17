@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as caseActions from '../src/actions/caseActions.js';
-import CaseItem from '../components/CaseItem.jsx';
+import * as casesActions from '../src/actions/casesActions.js';
+import CaseList from '../components/CaseList.jsx';
 
 const mapStateToProps = (state) => {
   return state;
@@ -10,11 +10,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      caseActions: bindActionCreators(caseActions, dispatch)
+      casesActions: bindActionCreators(casesActions, dispatch)
     };
 };
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(CaseItem);
+)(CaseList);

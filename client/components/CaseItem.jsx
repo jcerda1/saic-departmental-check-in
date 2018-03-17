@@ -3,7 +3,7 @@ import moment from 'moment';
 import '../css/loading.gif';
 
 const CaseItem = (props) => {
-
+  console.log(props)
   // constructor(props) {
   //   super(props);
 
@@ -50,7 +50,7 @@ const CaseItem = (props) => {
           <div>{Subject}</div>
         </td>
         <td>
-          {this.state.loading ?
+          {props.loading ?
             <div className="flex-row">
               <img src="assets/loading.gif"
                  alt="Loading"

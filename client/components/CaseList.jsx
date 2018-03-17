@@ -26,9 +26,9 @@ class CaseList extends React.Component {
               <th>Status</th>
               <th>Date Created</th>
             </tr>
-            {this.props.cases.map((case, i)=> {
-              return <Case
-                      caseData={case}
+            {this.props.cases.map((caseData, i)=> {
+              return <CaseItem
+                      caseData={caseData}
                       key={i}
                     />
             })
