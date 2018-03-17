@@ -8,8 +8,8 @@ import * as newCaseActions from './newCaseActions.js';
 /*** Case Actions ***/
 
 const createNew = (event) => (dispatch, getState) => {
-  newCaseActions.toggleUpdating()(dispatch, getState);
   const { contact, newCase } = getState();
+  newCaseActions.toggleUpdating()(dispatch, getState);
 
   axios.post('/cases', {
     id: contact.Id,
