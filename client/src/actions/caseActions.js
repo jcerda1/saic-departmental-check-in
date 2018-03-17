@@ -8,7 +8,6 @@ import * as newCaseActions from './newCaseActions.js';
 /*** Case Actions ***/
 
 const createNew = (event) => (dispatch, getState) => {
-  console.log('Creating new case')
   newCaseActions.toggleUpdating()(dispatch, getState);
   const { contact, newCase } = getState();
 

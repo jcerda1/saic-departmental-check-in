@@ -16,7 +16,6 @@ const handleEdit = (event) => (dispatch, getState) => {
 }
 
 const toggleUpdating = () => (dispatch, getState) => {
-  console.log('Updating', getState().newCase.updating);
   const updating = getState().newCase.updating;
   dispatch(update(!updating));
 }
