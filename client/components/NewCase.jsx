@@ -17,7 +17,7 @@ const NewCase = (props) => {
               onChange={props.handleEdit}
             />
           </div>
-          {props.updating ?
+          {props.loading ?
             <img src="assets/loading.gif"
               alt="Image not found"
               height="35"
