@@ -1,6 +1,6 @@
 import initialState from './initialState.js';
 
-const case = (state = initialState.case, { type, status, loading, editing }) => {
+const selectedCase = (state = initialState.case, { type, status, loading, editing }) => {
   switch(type) {
     case 'TOGGLE_EDITING':
       let newState = editing;
@@ -10,4 +10,4 @@ const case = (state = initialState.case, { type, status, loading, editing }) => 
   }
 };
 
-export default case;
+export default selectedCase;
