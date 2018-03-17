@@ -3,7 +3,6 @@ import moment from 'moment';
 import '../css/loading.gif';
 
 const CaseItem = (props) => {
-  console.log(props)
   // constructor(props) {
   //   super(props);
 
@@ -40,7 +39,7 @@ const CaseItem = (props) => {
   // }
 
 
-    const { CaseNumber, Subject, CreatedDate, Status } = props.caseData;
+    const { CaseNumber, Subject, CreatedDate, Status } = props;
     const date = moment(CreatedDate).format('MMMM Do YYYY, h:mm a');
 
     return (
