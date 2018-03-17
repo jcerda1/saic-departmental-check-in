@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Promise from 'bluebird';
 import '../css/loading.gif';
 
 const NewCase = (props) => {
@@ -27,7 +26,6 @@ const NewCase = (props) => {
             :
             <div className="btn" onClick={props.createNew}>Create Case</div>
           }
-
         </div>
       </div>
     );

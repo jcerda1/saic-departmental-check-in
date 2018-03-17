@@ -5,7 +5,7 @@ const newCase = (state = { subject: '' , updating: false }, action) => {
       newState = { ...state, subject: action.subject };
       return newState;
     case 'UPDATE':
-      newState = { ...state, updating: action.updating };
+      newState = { updating: action.updating, subject: '' };
       return newState;
     default:
       return state;
