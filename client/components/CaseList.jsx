@@ -1,5 +1,6 @@
 import React from 'react';
 import CaseItem from './CaseItem.jsx';
+import Case from '../containers/Case.js';
 
 class CaseList extends React.Component {
   constructor(props) {
@@ -25,9 +26,9 @@ class CaseList extends React.Component {
               <th>Status</th>
               <th>Date Created</th>
             </tr>
-            {this.props.cases.map((supportCase, i)=> {
-              return <CaseItem
-                      supportCase={supportCase}
+            {this.props.cases.map((case, i)=> {
+              return <Case
+                      caseData={case}
                       key={i}
                     />
             })

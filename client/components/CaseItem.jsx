@@ -40,7 +40,7 @@ const CaseItem = (props) => {
   // }
 
 
-    const {CaseNumber, Subject, CreatedDate, Status} = props.case;
+    const { CaseNumber, Subject, CreatedDate, Status } = props.caseData;
     const date = moment(CreatedDate).format('MMMM Do YYYY, h:mm a');
 
     return (
