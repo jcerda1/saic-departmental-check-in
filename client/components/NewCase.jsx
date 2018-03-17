@@ -4,6 +4,7 @@ import Promise from 'bluebird';
 import '../css/loading.gif';
 
 const NewCase = (props) => {
+    console.log('rendering new case view', console.log(props))
     return (
       <div className="flex-container new-case">
         <div className="form-title username line">New Case</div>

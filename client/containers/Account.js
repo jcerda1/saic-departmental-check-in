@@ -12,8 +12,8 @@ const Account = ({ contact, newCaseActions, caseActions, newCase }) => {
       <div>
         <AccountInfo {...contact}/>
         <NewCase
-          subject={newCase.subject}
           id={contact.EMPLIDPeoplesoftKey__c}
+          { ...newCase }
           { ...newCaseActions }
           { ...caseActions }
         />
