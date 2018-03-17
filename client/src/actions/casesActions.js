@@ -22,4 +22,4 @@ const getCases = (id) => (dispatch, getState) => {
   });
 };
 
-export {getCases};
+export { getCases };

@@ -1,6 +1,6 @@
 import initialState from './initialState.js';
 
-const cases = (state = initialState.cases, { type }) => {
+const cases = (state = initialState.cases, { type, cases }) => {
   switch(type) {
     case 'RECEIVE_CASES':
       let newState = cases;
