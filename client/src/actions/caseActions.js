@@ -1,6 +1,6 @@
 import axios from 'axios';
 import{ getCases } from './casesActions.js';
-import * as newCaseActions from './newCaseActions.js';
+import { toggleLoadingState } from './newCaseActions.js';
 
 /*** Action Creators ***/
 
@@ -9,7 +9,7 @@ import * as newCaseActions from './newCaseActions.js';
 
 const createNew = (event) => (dispatch, getState) => {
   const { contact, newCase } = getState();
-  const toggleLoading = newCaseActions.toggleLoading().bind(null, dispatch, getState);
+  const toggleLoading = toggleLoadingState().bind(null, dispatch, getState);
 
   toggleLoading();
 

@@ -15,9 +15,9 @@ const handleEdit = (event) => (dispatch, getState) => {
   dispatch(editSubject(event.target.value));
 }
 
-const toggleLoading = () => (dispatch, getState) => {
+const toggleLoadingState = () => (dispatch, getState) => {
   const { loading } = getState().newCase;
   dispatch(setLoadingState(!loading));
 }
 
-export { handleEdit, toggleLoading };
+export { handleEdit, toggleLoadingState };
