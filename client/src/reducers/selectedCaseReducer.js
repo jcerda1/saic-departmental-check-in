@@ -4,7 +4,7 @@ const selectedCase = (state = initialState.selectedCase, action) => {
   const { type, status, loading, editing } = action;
 
   switch(type) {
-    case 'TOGGLE_EDITING':
+    case 'SET_EDITING':
       let newState = editing;
       return newState;
     default:
