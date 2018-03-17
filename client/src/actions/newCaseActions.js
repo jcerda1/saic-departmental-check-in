@@ -5,8 +5,8 @@ const editSubject = (data) => {
   return {type: 'EDIT_SUBJECT', subject: data};
 }
 
-const update = (data) => {
-  return {type: 'UPDATE', updating: data};
+const setLoading = (data) => {
+  return {type: 'SET_LOADING', loading: data};
 }
 
 /*** newCase Actions ***/
@@ -15,9 +15,9 @@ const handleEdit = (event) => (dispatch, getState) => {
   dispatch(editSubject(event.target.value));
 }
 
-const toggleUpdating = (args) => (dispatch, getState) => {
-  const updating = getState().newCase.updating;
-  dispatch(update(!updating));
+const toggleLoading = (args) => (dispatch, getState) => {
+  const loading = getState().newCase.loading;
+  dispatch(setLoading(!loading));
 }
 
-export {handleEdit, toggleUpdating};
+export {handleEdit, toggleLoading};

@@ -9,7 +9,7 @@ import * as newCaseActions from './newCaseActions.js';
 
 const createNew = (event) => (dispatch, getState) => {
   const { contact, newCase } = getState();
-  newCaseActions.toggleUpdating()(dispatch, getState);
+  newCaseActions.toggleLoading()(dispatch, getState);
 
   axios.post('/cases', {
     id: contact.Id,
@@ -18,7 +18,7 @@ const createNew = (event) => (dispatch, getState) => {
   .then(data => {
     getCases(contact.Id)(dispatch)
     .then(cases => {
-      newCaseActions.toggleUpdating()(dispatch, getState);
+      newCaseActions.toggleLoading()(dispatch, getState);
     });
   })
   .catch(err => {
