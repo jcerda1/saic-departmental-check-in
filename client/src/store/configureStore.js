@@ -5,8 +5,8 @@ import rootReducer from '../reducers/rootReducer';
 const configureStore = () => {
   return createStore(
     rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(thunk)
+    applyMiddleware(thunk),
+     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   );
 }
 

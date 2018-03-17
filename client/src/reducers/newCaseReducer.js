@@ -1,4 +1,6 @@
-const newCase = (state = { subject: '' , updating: false }, { type, subject, updating }) => {
+import initialState from './initialState.js';
+
+const newCase = (state = initialState.newCase, { type, subject, updating }) => {
   let newState;
   switch(type) {
     case 'EDIT_SUBJECT':

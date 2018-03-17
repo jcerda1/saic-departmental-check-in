@@ -1,3 +1,5 @@
 export default {
-  contact: ''
+  contact: '',
+  cases: '',
+  newCase: { subject: '' , updating: false }
 }
