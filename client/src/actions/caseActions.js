@@ -16,8 +16,10 @@ const createNew = (event) => (dispatch, getState) => {
     subject: newCase.subject
   })
   .then(data => {
-    getCases(contact.Id)(dispatch);
-    newCaseActions.toggleUpdating()(dispatch, getState);
+    getCases(contact.Id)(dispatch)
+    .then(cases => {
+      newCaseActions.toggleUpdating()(dispatch, getState);
+    });
   })
   .catch(err => {
     console.log(err);

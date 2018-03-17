@@ -7,19 +7,16 @@ const receiveCases = (data) => {
 }
 
 /*** Case Actions ***/
-
 const getCases = (id) => (dispatch, getState) => {
   return new Promise((resolve, reject) => {
-    console.log('getting cases')
     axios.get('/cases', {
-          params: {id: id}
+          params: { id }
         })
         .then(data => {
           dispatch(receiveCases(data));
           resolve(data);
         })
         .catch(err => {
-          console.log(err);
           reject(err);
         });
   });
