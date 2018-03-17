@@ -2,45 +2,45 @@ import React from 'react';
 import moment from 'moment';
 import '../css/loading.gif';
 
-class CaseItem extends React.Component {
+const CaseItem = (props) => {
 
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      editing: false,
-      loading: false,
-      status: '',
-      caseId: this.props.supportCase.Id
-    };
+  //   this.state = {
+  //     editing: false,
+  //     loading: false,
+  //     status: '',
+  //     caseId: this.props.supportCase.Id
+  //   };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
-  }
+  //   this.handleSubmit = this.handleSubmit.bind(this);
+  //   this.handleClick = this.handleClick.bind(this);
+  //   this.handleSelect = this.handleSelect.bind(this);
+  // }
 
-  handleSubmit(event) {
-    this.setState({loading: true, editing: false});
-    const {caseId, status} = this.state;
-    this.props.handleUpdate(status, caseId)
-    .then(() => {
-      this.props.refreshList()
-      .then((data) => {
-        this.setState({loading: false});
-      });
-    });
-  };
+  // handleSubmit(event) {
+  //   this.setState({loading: true, editing: false});
+  //   const {caseId, status} = this.state;
+  //   this.props.handleUpdate(status, caseId)
+  //   .then(() => {
+  //     this.props.refreshList()
+  //     .then((data) => {
+  //       this.setState({loading: false});
+  //     });
+  //   });
+  // };
 
-  handleClick() {
-    this.setState({editing: true});
-  }
+  // handleClick() {
+  //   this.setState({editing: true});
+  // }
 
-  handleSelect(event) {
-    this.setState({status: event.target.value})
-  }
+  // handleSelect(event) {
+  //   this.setState({status: event.target.value})
+  // }
 
-  render () {
-    const {CaseNumber, Subject, CreatedDate, Status} = this.props.supportCase;
+
+    const {CaseNumber, Subject, CreatedDate, Status} = props.case;
     const date = moment(CreatedDate).format('MMMM Do YYYY, h:mm a');
 
     return (
@@ -58,26 +58,25 @@ class CaseItem extends React.Component {
               />
             </div>
             :
-            this.state.editing ?
+            props.editing ?
             <div className="flex-row">
-              <select onChange={this.handleSelect}>
+              <select onChange={''}>
                 <option value="select" defaultValue>select</option>
                 <option value="New">New</option>
                 <option value="In Progress">In Progress</option>
                 <option value="Void">Void</option>
               </select>
-              <div className="btn submit" onClick={this.handleSubmit}>Submit</div>
+              <div className="btn submit" onClick={''}>Submit</div>
             </div>
             :
             <div className="flex-row status">{Status}
-              <div className="btn update" onClick={this.handleClick}>update</div>
+              <div className="btn update" onClick={''}>update</div>
             </div>
           }
         </td>
         <td>{date}</td>
       </tr>
     );
-  }
-}
+};
 
 export default CaseItem;
