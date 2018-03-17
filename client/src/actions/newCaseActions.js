@@ -11,21 +11,14 @@ const setLoadingState = (data) => {
 }
 
 /*** newCase Actions ***/
-
 const handleEdit = (event) => (dispatch, getState) => {
   dispatch(editSubject(event.target.value));
 }
 
-const toggleLoadingState = () => (dispatch, getState) => {
-  const { loading } = getState().newCase;
-  dispatch(setLoadingState(!loading));
-}
-
 const createNew = (event) => (dispatch, getState) => {
   const { contact, newCase } = getState();
-  const toggleLoading = toggleLoadingState().bind(null, dispatch, getState);
 
-  toggleLoading();
+  dispatch(setLoadingState(true));
 
   axios.post('/cases', {
     id: contact.Id,
@@ -34,7 +27,7 @@ const createNew = (event) => (dispatch, getState) => {
   .then(data => {
     getCases(contact.Id)(dispatch)
     .then(cases => {
-      toggleLoading();
+      dispatch(setLoadingState(false));
     });
   })
   .catch(err => {
@@ -42,4 +35,4 @@ const createNew = (event) => (dispatch, getState) => {
   })
 };
 
-export { handleEdit, toggleLoadingState, createNew };
+export { handleEdit, createNew };
