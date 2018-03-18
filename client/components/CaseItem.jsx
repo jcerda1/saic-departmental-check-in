@@ -70,7 +70,7 @@ const CaseItem = (props) => {
             </div>
             :
             <div className="flex-row status">{Status}
-              <div className="btn update" onClick={props.handleUpdateClick}>update</div>
+              <div className="btn update" onClick={props.selectedCaseActions.handleUpdateClick}>update</div>
             </div>
           }
         </td>
