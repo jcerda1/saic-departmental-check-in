@@ -29,6 +29,10 @@ const setStatus = (event) => (dispatch, getState) => {
   dispatch(recieveStatus(event.target.value));
 };
 
+const handleUpdateClick = (event) => (dispatch, getState) => {
+  dispatch(recieveEditingState(true));
+};
+
 
 const updateCaseStatus = (event) => (dispatch, getState) => {
   return new Promise((resolve, reject) => {
