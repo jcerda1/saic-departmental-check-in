@@ -5,6 +5,9 @@ const selectedCase = (state = initialState.selectedCase, action) => {
 
   switch(type) {
     case 'SET_EDITING':
+      let newState = { ...state, editing };
+      return newState;
+    case 'SET_EDITING':
       let newState = editing;
       return newState;
     default:
