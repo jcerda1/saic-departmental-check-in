@@ -28,6 +28,7 @@ const recieveStatus = (str) => {
 
 const handleUpdateClick = (event) => (dispatch, getState) => {
   dispatch(recieveEditingState(true));
+   console.log('Updating')
 };
 
 const handleSelect = (event) => (dispatch, getState) => {
@@ -36,21 +37,21 @@ const handleSelect = (event) => (dispatch, getState) => {
 
 
 const updateCaseStatus = (event) => (dispatch, getState) => {
-  return new Promise((resolve, reject) => {
+  // return new Promise((resolve, reject) => {
 
-    axios.put('/cases', {
-    status: status,
-    id: caseId
-    })
-    .then(() => {
-      console.log("successfully updated");
-      resolve();
-    })
-    .catch(err => {
-      console.log(err);
-      reject(err);
-    });
-  });
+  //   axios.put('/cases', {
+  //   status: status,
+  //   id: caseId
+  //   })
+  //   .then(() => {
+  //     console.log("successfully updated");
+  //     resolve();
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //     reject(err);
+  //   });
+  // });
 };
 
-export { handleUpdateClick, handleSelect }
+export { handleUpdateClick, handleSelect, updateCaseStatus }

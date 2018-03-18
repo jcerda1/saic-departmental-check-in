@@ -3,7 +3,7 @@ import moment from 'moment';
 import '../css/loading.gif';
 
 const CaseItem = (props) => {
-  console.log(props.status)
+  //console.log(props)
   // constructor(props) {
   //   super(props);
 

@@ -4,9 +4,16 @@ import { bindActionCreators } from 'redux';
 import CaseItem from '../components/CaseItem.jsx';
 import * as selectedCaseActions from '../src/actions/selectedCaseActions.js';
 
-const mapStateToProps = (state) => {
-  return state.selectedCase;
+const Case = (props) => {
+  //map case Id to selectedCase state
+  //console.log(props)
+  return <CaseItem {...props} />;
 };
+
+// const mapStateToProps = (state) => {
+//   //console.log(state);
+//   return state.selectedCase;
+// };
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -15,6 +22,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
-)(CaseItem);
+)(Case);

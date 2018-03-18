@@ -7,6 +7,7 @@ const selectedCase = (state = initialState.selectedCase, action) => {
   switch(type) {
     case 'RECIEVE_EDITING':
       newState = { ...state, editing };
+      console.log('recieving editing state', state, newState)
       return newState;
     case 'RECIEVE_LOADING':
       newState = { ...state, loading };
