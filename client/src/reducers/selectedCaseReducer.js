@@ -6,10 +6,13 @@ const selectedCase = (state = initialState.selectedCase, action) => {
 
   switch(type) {
     case 'SET_EDITING':
-      let newState = { ...state, editing };
+      newState = { ...state, editing };
       return newState;
     case 'SET_LOADING':
-      let newState = { ...state, loading };
+      newState = { ...state, loading };
+      return newState;
+    case 'SET_STATUS':
+      newState = { ...state, status };
       return newState;
     default:
       return state;
