@@ -19,7 +19,7 @@ const recieveLoadingState = (bool) => {
 const recieveStatus = (str) => {
   return {
     type: 'RECIEVE_STATUS',
-    status: str
+    newStatus: str
   };
 };
 
@@ -28,14 +28,11 @@ const recieveStatus = (str) => {
 
 const handleUpdateClick = (caseId) => (dispatch, getState) => {
   dispatch(recieveSelectedState(caseId));
-  console.log(caseId)
-   console.log('Updating')
 };
 
 const handleSelect = (event) => (dispatch, getState) => {
   dispatch(recieveStatus(event.target.value));
 };
-
 
 const updateCaseStatus = (event) => (dispatch, getState) => {
   // return new Promise((resolve, reject) => {
