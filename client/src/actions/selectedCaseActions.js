@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getCases } from './casesActions.js';
 
 /*** Action Creators ***/
 const recieveSelectedState = (caseId) => {
@@ -35,7 +36,9 @@ const handleSelect = (event) => (dispatch, getState) => {
 
 const updateCaseStatus = (event) => (dispatch, getState) => {
   const { caseId, newStatus } = getState().selectedCase;
-  console.log(caseId, newStatus)
+  const contactId = getState().contact.Id
+
+  dispatch(recieveLoadingState(true));
 
   axios.put('/cases', {
     status: newStatus,
@@ -43,6 +46,11 @@ const updateCaseStatus = (event) => (dispatch, getState) => {
   })
   .then(() => {
     console.log("successfully updated");
+    getCases(contactId)(dispatch)
+    .then(cases => {
+      dispatch(recieveLoadingState(false));
+      dispatch(recieveSelectedState(false));
+    });
   })
   .catch(err => {
     console.log(err);

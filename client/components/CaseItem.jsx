@@ -50,7 +50,7 @@ const CaseItem = (props) => {
           <div>{Subject}</div>
         </td>
         <td>
-          {props.loading ?
+          {props.loading && props.Id === props.caseId ?
             <div className="flex-row">
               <img src="assets/loading.gif"
                  alt="Loading"
