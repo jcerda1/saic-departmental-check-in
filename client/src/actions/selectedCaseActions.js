@@ -4,21 +4,21 @@ import Promise from 'bluebird';
 /*** Action Creators ***/
 const recieveEditingState = (bool) => {
   return {
-    type: 'SET_EDITING',
+    type: 'RECIEVE_EDITING',
     editing: bool
   };
 };
 
 const recieveLoadingState = (bool) => {
   return {
-    type: 'SET_LOADING',
+    type: 'RECIEVE_LOADING',
     loading: bool
   };
 };
 
 const recieveStatus = (str) => {
   return {
-    type: 'SET_STATUS',
+    type: 'RECIEVE_STATUS',
     status: str
   };
 };

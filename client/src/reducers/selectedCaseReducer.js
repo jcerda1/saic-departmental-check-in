@@ -5,13 +5,13 @@ const selectedCase = (state = initialState.selectedCase, action) => {
   let newState;
 
   switch(type) {
-    case 'SET_EDITING':
+    case 'RECIEVE_EDITING':
       newState = { ...state, editing };
       return newState;
-    case 'SET_LOADING':
+    case 'RECIEVE_LOADING':
       newState = { ...state, loading };
       return newState;
-    case 'SET_STATUS':
+    case 'RECIEVE_STATUS':
       newState = { ...state, status };
       return newState;
     default:
