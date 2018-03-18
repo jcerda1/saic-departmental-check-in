@@ -52,4 +52,4 @@ const updateCaseStatus = (event) => (dispatch, getState) => {
   });
 };
 
-export default {  }
+export { handleUpdateClick }

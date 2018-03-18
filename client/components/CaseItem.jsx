@@ -3,6 +3,7 @@ import moment from 'moment';
 import '../css/loading.gif';
 
 const CaseItem = (props) => {
+  console.log(props)
   // constructor(props) {
   //   super(props);
 
@@ -69,7 +70,7 @@ const CaseItem = (props) => {
             </div>
             :
             <div className="flex-row status">{Status}
-              <div className="btn update" onClick={''}>update</div>
+              <div className="btn update" onClick={props.handleUpdateClick}>update</div>
             </div>
           }
         </td>
