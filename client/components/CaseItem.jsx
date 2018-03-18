@@ -58,7 +58,7 @@ const CaseItem = (props) => {
               />
             </div>
             :
-            props.editing ?
+            props.Id === props.caseId ?
             <div className="flex-row">
               <select onChange={props.selectedCaseActions.handleSelect}>
                 <option value="select" defaultValue>select</option>

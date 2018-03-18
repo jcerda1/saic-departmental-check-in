@@ -10,10 +10,10 @@ const Case = (props) => {
   return <CaseItem {...props} />;
 };
 
-// const mapStateToProps = (state) => {
-//   //console.log(state);
-//   return state.selectedCase;
-// };
+const mapStateToProps = (state) => {
+  //console.log(state);
+  return state.selectedCase;
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -22,6 +22,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(Case);
