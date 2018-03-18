@@ -1,24 +1,24 @@
 import axios from 'axios';
 
 /*** Action Creators ***/
-const setEditingState = (data) => {
+const setEditingState = (bool) => {
   return {
     type: 'SET_EDITING',
-    editing: data
+    editing: bool
   };
 };
 
-const setLoadingState = (data) => {
+const setLoadingState = (bool) => {
   return {
     type: 'SET_LOADING',
-    loading: data
+    loading: bool
   };
 };
 
-const setStatus = (data) => {
+const setStatus = (str) => {
   return {
     type: 'SET_STATUS',
-    status: data
+    status: str
   };
 };
 
