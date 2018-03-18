@@ -32,7 +32,6 @@ const setStatus = (event) => (dispatch, getState) => {
 
 const updateCaseStatus = (event) => (dispatch, getState) => {
   return new Promise((resolve, reject) => {
-    const { status }
 
     axios.put('/cases', {
     status: status,

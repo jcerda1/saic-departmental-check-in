@@ -59,7 +59,7 @@ const CaseItem = (props) => {
             :
             props.editing ?
             <div className="flex-row">
-              <select onChange={''}>
+              <select onChange={props.setStatus}>
                 <option value="select" defaultValue>select</option>
                 <option value="New">New</option>
                 <option value="In Progress">In Progress</option>
