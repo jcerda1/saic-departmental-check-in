@@ -40,7 +40,7 @@ const CaseItem = (props) => {
   // }
 
 
-    const { CaseNumber, Subject, CreatedDate, Status } = props;
+    const { CaseNumber, Subject, CreatedDate, Status, Id } = props;
     const date = moment(CreatedDate).format('MMMM Do YYYY, h:mm a');
 
     return (
@@ -70,7 +70,7 @@ const CaseItem = (props) => {
             </div>
             :
             <div className="flex-row status">{Status}
-              <div className="btn update" onClick={props.selectedCaseActions.handleUpdateClick}>update</div>
+              <div className="btn update" onClick={() => props.selectedCaseActions.handleUpdateClick(Id)}>update</div>
             </div>
           }
         </td>

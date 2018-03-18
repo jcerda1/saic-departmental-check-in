@@ -2,10 +2,10 @@ import axios from 'axios';
 import Promise from 'bluebird';
 
 /*** Action Creators ***/
-const recieveEditingState = (bool) => {
+const recieveSelectedState = (caseId) => {
   return {
-    type: 'RECIEVE_EDITING',
-    editing: bool
+    type: 'RECIEVE_SELECTED',
+    caseId: caseId
   };
 };
 
@@ -26,8 +26,9 @@ const recieveStatus = (str) => {
 
 /*** selectedCase Actions ***/
 
-const handleUpdateClick = (event) => (dispatch, getState) => {
-  dispatch(recieveEditingState(true));
+const handleUpdateClick = (caseId) => (dispatch, getState) => {
+  dispatch(recieveSelectedState(caseId));
+  console.log(caseId)
    console.log('Updating')
 };
 
