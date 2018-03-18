@@ -25,12 +25,13 @@ const recieveStatus = (str) => {
 
 
 /*** selectedCase Actions ***/
-const setStatus = (event) => (dispatch, getState) => {
-  dispatch(recieveStatus(event.target.value));
-};
 
 const handleUpdateClick = (event) => (dispatch, getState) => {
   dispatch(recieveEditingState(true));
+};
+
+const handleSelect = (event) => (dispatch, getState) => {
+  dispatch(recieveStatus(event.target.value));
 };
 
 
@@ -52,4 +53,4 @@ const updateCaseStatus = (event) => (dispatch, getState) => {
   });
 };
 
-export { handleUpdateClick }
+export { handleUpdateClick, handleSelect }

@@ -3,7 +3,7 @@ import moment from 'moment';
 import '../css/loading.gif';
 
 const CaseItem = (props) => {
-  console.log(props)
+  console.log(props.status)
   // constructor(props) {
   //   super(props);
 
@@ -60,7 +60,7 @@ const CaseItem = (props) => {
             :
             props.editing ?
             <div className="flex-row">
-              <select onChange={props.setStatus}>
+              <select onChange={props.selectedCaseActions.handleSelect}>
                 <option value="select" defaultValue>select</option>
                 <option value="New">New</option>
                 <option value="In Progress">In Progress</option>

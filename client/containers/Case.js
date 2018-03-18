@@ -5,7 +5,6 @@ import CaseItem from '../components/CaseItem.jsx';
 import * as selectedCaseActions from '../src/actions/selectedCaseActions.js';
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return state.selectedCase;
 };
 
