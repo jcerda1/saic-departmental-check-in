@@ -2,21 +2,21 @@ import axios from 'axios';
 import Promise from 'bluebird';
 
 /*** Action Creators ***/
-const setEditingState = (bool) => {
+const recieveEditingState = (bool) => {
   return {
     type: 'SET_EDITING',
     editing: bool
   };
 };
 
-const setLoadingState = (bool) => {
+const recieveLoadingState = (bool) => {
   return {
     type: 'SET_LOADING',
     loading: bool
   };
 };
 
-const setStatus = (str) => {
+const recieveStatus = (str) => {
   return {
     type: 'SET_STATUS',
     status: str
@@ -25,8 +25,15 @@ const setStatus = (str) => {
 
 
 /*** selectedCase Actions ***/
+const setStatus = (event) => (dispatch, getState) => {
+  dispatch(recieveStatus(event.target.value));
+};
+
+
 const updateCaseStatus = (event) => (dispatch, getState) => {
   return new Promise((resolve, reject) => {
+    const { status }
+
     axios.put('/cases', {
     status: status,
     id: caseId
