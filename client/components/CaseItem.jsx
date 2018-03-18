@@ -3,7 +3,6 @@ import moment from 'moment';
 import '../css/loading.gif';
 
 const CaseItem = (props) => {
-  console.log(props)
   //console.log(props)
   // constructor(props) {
   //   super(props);
@@ -67,7 +66,7 @@ const CaseItem = (props) => {
                 <option value="In Progress">In Progress</option>
                 <option value="Void">Void</option>
               </select>
-              <div className="btn submit" onClick={''}>Submit</div>
+              <div className="btn submit" onClick={props.selectedCaseActions.updateCaseStatus}>Submit</div>
             </div>
             :
             <div className="flex-row status">{Status}

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Promise from 'bluebird';
 
 /*** Action Creators ***/
 const recieveSelectedState = (caseId) => {
@@ -35,21 +34,19 @@ const handleSelect = (event) => (dispatch, getState) => {
 };
 
 const updateCaseStatus = (event) => (dispatch, getState) => {
-  // return new Promise((resolve, reject) => {
+  const { caseId, newStatus } = getState().selectedCase;
+  console.log(caseId, newStatus)
 
-  //   axios.put('/cases', {
-  //   status: status,
-  //   id: caseId
-  //   })
-  //   .then(() => {
-  //     console.log("successfully updated");
-  //     resolve();
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //     reject(err);
-  //   });
-  // });
+  axios.put('/cases', {
+    status: newStatus,
+    id: caseId
+  })
+  .then(() => {
+    console.log("successfully updated");
+  })
+  .catch(err => {
+    console.log(err);
+  });
 };
 
 export { handleUpdateClick, handleSelect, updateCaseStatus }
