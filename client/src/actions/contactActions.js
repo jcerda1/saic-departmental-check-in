@@ -21,6 +21,6 @@ const getContact = (event) => (dispatch, getState) => {
       console.log(err);
     })
   }
-}
+};
 
 export {getContact};
