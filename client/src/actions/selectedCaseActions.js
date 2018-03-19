@@ -45,7 +45,6 @@ const updateCaseStatus = (event) => (dispatch, getState) => {
     id: caseId
   })
   .then(() => {
-    console.log("successfully updated");
     getCases(contactId)(dispatch)
     .then(cases => {
       dispatch(recieveLoadingState(false));
