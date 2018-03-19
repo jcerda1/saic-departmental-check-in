@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getCases } from './casesActions.js';
 
 /*** Action Creators ***/
 const receiveContact = (data) => {
@@ -12,10 +13,11 @@ const getContact = (event) => (dispatch, getState) => {
 
   if (id.length === 7) {
     axios.get('/contact', {
-      params: {id}
+      params: { id }
     })
     .then(data => {
       dispatch(receiveContact(data));
+      getCases()(dispatch, getState);
     })
     .catch(err => {
       console.log(err);
@@ -23,4 +25,4 @@ const getContact = (event) => (dispatch, getState) => {
   }
 };
 
-export {getContact};
+export { getContact };
