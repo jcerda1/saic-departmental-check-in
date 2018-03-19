@@ -7,7 +7,9 @@ const receiveCases = (data) => {
 }
 
 /*** Case Actions ***/
-const getCases = (id) => (dispatch, getState) => {
+const getCases = () => (dispatch, getState) => {
+  const id = getState().contact.Id;
+
   return new Promise((resolve, reject) => {
     axios.get('/cases', {
           params: { id }

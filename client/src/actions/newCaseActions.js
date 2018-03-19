@@ -25,7 +25,7 @@ const createNew = (event) => (dispatch, getState) => {
     subject: newCase.subject
   })
   .then(data => {
-    getCases(contact.Id)(dispatch)
+    getCases()(dispatch, getState)
     .then(cases => {
       dispatch(setLoadingState(false));
     });

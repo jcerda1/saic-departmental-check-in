@@ -25,7 +25,6 @@ const recieveStatus = (str) => {
 
 
 /*** selectedCase Actions ***/
-
 const handleUpdateClick = (caseId) => (dispatch, getState) => {
   dispatch(recieveSelectedState(caseId));
 };
@@ -36,7 +35,6 @@ const handleSelect = (event) => (dispatch, getState) => {
 
 const updateCaseStatus = (event) => (dispatch, getState) => {
   const { caseId, newStatus } = getState().selectedCase;
-  const contactId = getState().contact.Id
 
   dispatch(recieveLoadingState(true));
 
@@ -45,7 +43,7 @@ const updateCaseStatus = (event) => (dispatch, getState) => {
     id: caseId
   })
   .then(() => {
-    getCases(contactId)(dispatch)
+    getCases()(dispatch, getState)
     .then(cases => {
       dispatch(recieveLoadingState(false));
       dispatch(recieveSelectedState(false));

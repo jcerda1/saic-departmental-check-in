@@ -8,8 +8,8 @@ class CaseList extends React.Component {
   }
 
   componentWillMount() {
-    const { casesActions, contact } = this.props;
-    casesActions.getCases(contact.Id);
+    const { casesActions } = this.props;
+    casesActions.getCases();
   }
 
   render() {
