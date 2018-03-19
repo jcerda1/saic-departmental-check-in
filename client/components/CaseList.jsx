@@ -1,11 +1,11 @@
 import React from 'react';
 import Case from '../containers/Case.js';
 
-const CaseList = (props) => {
+const CaseList = ({ cases }) => {
   return (
     <div className="flex-container case-list">
       <div className="form-title line username">Cases</div>
-      {!props.cases ? <div className="flex-container">Getting Cases...</div>
+      {!cases ? <div className="flex-container">Getting Cases...</div>
       :
       <table className="case-table">
         <tbody>
@@ -15,7 +15,7 @@ const CaseList = (props) => {
             <th>Status</th>
             <th>Date Created</th>
           </tr>
-          {props.cases.map((caseData, i) => <Case {...caseData} key={i}/>)}
+          {cases.map((caseData, i) => <Case {...caseData} key={i}/>)}
           </tbody>
       </table>
 
